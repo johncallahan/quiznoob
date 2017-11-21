@@ -8,6 +8,8 @@ module Api
     def create
       user = User.find_by(email: params[:session][:email].downcase)
         if user && user.authenticate(params[:session][:password])
+	  user.lastlogin = DateTime.now
+	  user.save!
           render :text => user.access_token, status: 200
         else
           render text: "Email and password combination are invalid", status: 422
