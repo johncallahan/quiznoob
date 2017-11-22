@@ -3,6 +3,7 @@ module Api
 
     def new
     end
+
     #If user login data are valid it will return the access_token so the
     #client app can use it for future request for the specific user.
     def create
@@ -15,6 +16,7 @@ module Api
           render text: "Email and password combination are invalid", status: 422
         end
     end
+
     #Verifies the access_token so the client app would know if to login the user.
     def verify_access_token
       user = User.find_by(access_token: params[:session][:access_token])
