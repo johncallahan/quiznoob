@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  devise_for :admins
+
+  authenticate :admin do
   resources :quizzes
   get    'signup'  => 'users#new'
   get    'login'   => 'sessions#new'
@@ -8,6 +11,8 @@ Rails.application.routes.draw do
   get    'verify'  => 'sessions#verify_access_token'
   resources :users
   resources :password_resets, only: [:new, :create, :edit, :update]
+  end
+
   root 'welcome#welcome'
 
   namespace :api do
