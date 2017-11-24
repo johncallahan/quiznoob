@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :attempts
   devise_for :admins
 
   authenticate :admin do

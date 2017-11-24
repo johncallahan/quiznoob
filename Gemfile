@@ -30,6 +30,7 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'rack-cors', :require => 'rack/cors'
 
 gem 'devise', '~> 3.4.0'
+gem 'time_difference'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

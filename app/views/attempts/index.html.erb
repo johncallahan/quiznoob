@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Attempts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Quiz</th>
+      <th>Progress</th>
+      <th>Num of Qs</th>
+      <th>Time zone</th>
+      <th>Now</th>
+      <th>End of Day</th>
+      <th>Time Remaining</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @attempts.each do |attempt| %>
+      <tr>
+        <td><%= attempt.user.email %></td>
+        <td><%= attempt.quiz.name %></td>
+        <td><%= attempt.progress %>/</td>
+        <td><%= attempt.quiz.numquestions %></td>
+	<td><%= Time.zone %></td>
+        <td><%= DateTime.now.in_time_zone %></td>
+        <td><%= attempt.startedat.end_of_day.in_time_zone %></td>
+        <td>
+	  <% if DateTime.now < attempt.startedat.end_of_day %>
+            <%= distance_of_time_in_words(DateTime.now,attempt.startedat.end_of_day) %>
+          <% else %>
+            Expired
+          <% end %>
+	</td>
+        <td><%= link_to 'Show', attempt %></td>
+        <td><%= link_to 'Edit', edit_attempt_path(attempt) %></td>
+        <td><%= link_to 'Destroy', attempt, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Attempt', new_attempt_path %>
