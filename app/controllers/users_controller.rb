@@ -8,6 +8,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
+    Time.zone = "EST"
     @users = User.all
   end
 
