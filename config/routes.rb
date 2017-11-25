@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     post   'login'   => 'sessions#create'
     delete 'logout'  => 'sessions#destroy'
     get    'verify'  => 'sessions#verify_access_token'
-#    resources :users, param: :access_token
+    resources :users, param: :access_token
     post   'quizzes' => 'quizzes#index'
     post   'quizzes/:id' => 'quizzes#show'
 #    resources :password_resets, only: [:new, :create, :edit, :update]
