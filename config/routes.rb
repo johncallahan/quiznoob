@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
 
-  resources :questions
-  resources :attempts
   devise_for :admins
 
   authenticate :admin do
+  resources :subjects
+  resources :questions
+  resources :attempts
   resources :quizzes
   get    'signup'  => 'users#new'
   get    'login'   => 'sessions#new'

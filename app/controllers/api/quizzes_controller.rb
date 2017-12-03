@@ -8,7 +8,11 @@ class QuizzesController < ApplicationController
   # GET /quizzes.json
   def index
     if @user
-      @quizzes = Quiz.all
+      if params[:subject]
+        @quizzes = Subject.find_by_name(params[:subject]).quizzes
+      else
+        @quizzes = Quiz.all
+      end
       render :json => @quizzes
     else 
       render text: "Token failed verification", status: 422
@@ -37,7 +41,7 @@ class QuizzesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def quiz_params
-      params.require(:quiz).permit(:name)
+      params.require(:quiz).permit(:name,:subject)
     end
 end
 end

@@ -4,7 +4,7 @@ class QuizzesController < ApplicationController
   # GET /quizzes
   # GET /quizzes.json
   def index
-    @quizzes = Quiz.all
+    @quizzes = Quiz.all.includes(:subject)
   end
 
   # GET /quizzes/1
@@ -69,6 +69,6 @@ class QuizzesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def quiz_params
-      params.require(:quiz).permit(:name,:description)
+      params.require(:quiz).permit(:name,:description,:subject_id)
     end
 end
