@@ -27,7 +27,7 @@ class QuizzesController < ApplicationController
   # GET /quizzes/1.json
   def show
     if @user
-      render :json => @quiz
+      render :json => @quiz.questions
     else 
       render text: "Token failed verification", status: 422
     end
