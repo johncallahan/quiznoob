@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
 
+  resources :answers
   devise_for :admins
 
   authenticate :admin do
   resources :subjects
+  resources :answers
   resources :questions
   resources :attempts
   resources :quizzes

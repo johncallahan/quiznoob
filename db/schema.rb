@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171203130004) do
+ActiveRecord::Schema.define(version: 20171207175904) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
@@ -63,7 +63,10 @@ ActiveRecord::Schema.define(version: 20171203130004) do
     t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.integer  "answer_id",  limit: 4
   end
+
+  add_index "questions", ["answer_id"], name: "index_questions_on_answer_id", using: :btree
 
   create_table "quiz_questions", force: :cascade do |t|
     t.integer  "quiz_id",     limit: 4
@@ -115,6 +118,7 @@ ActiveRecord::Schema.define(version: 20171203130004) do
   add_foreign_key "attempts", "users"
   add_foreign_key "question_answers", "answers"
   add_foreign_key "question_answers", "questions"
+  add_foreign_key "questions", "answers"
   add_foreign_key "quiz_questions", "questions"
   add_foreign_key "quiz_questions", "quizzes"
   add_foreign_key "quizzes", "subjects"

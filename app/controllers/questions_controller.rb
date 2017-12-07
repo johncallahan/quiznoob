@@ -4,7 +4,7 @@ class QuestionsController < ApplicationController
   # GET /questions
   # GET /questions.json
   def index
-    @questions = Question.all
+    @questions = Question.all.includes(:quizzes)
   end
 
   # GET /questions/1
@@ -69,6 +69,6 @@ class QuestionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
-      params.require(:question).permit(:name)
+      params.require(:question).permit(:name,:answer_id,:quiz_ids => [],:answer_ids => [])
     end
 end

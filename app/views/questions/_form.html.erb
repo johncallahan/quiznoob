@@ -15,6 +15,18 @@
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
+  <div class="field">
+    <%= f.label :quiz_ids %>
+    <%= f.select :quiz_ids, Quiz.all.collect {|x| [x.name, x.id]}, {}, :multiple => true %>
+  </div>
+  <div class="field">
+    <%= f.label :answer_id %>
+    <%= f.collection_select :answer_id, Answer.all, :id, :name %>
+  </div>
+  <div class="field">
+    <%= f.label :answer_ids %>
+    <%= f.select :answer_ids, Answer.all.collect {|x| [x.name, x.id]}, {}, :multiple => true %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
