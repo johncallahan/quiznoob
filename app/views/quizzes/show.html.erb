@@ -7,7 +7,7 @@
 <p>
   <strong>Questions:</strong><br/>
   <% @quiz.questions.each do |question| %>
-    <%= question.name %><br/>
+    <%= link_to question.name, question_path(question) %><br/>
   <% end %>
 </p>
 
