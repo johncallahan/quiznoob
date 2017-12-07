@@ -4,6 +4,12 @@
   <strong>Name:</strong>
   <%= @quiz.name %>
 </p>
+<p>
+  <strong>Questions:</strong><br/>
+  <% @quiz.questions.each do |question| %>
+    <%= question.name %><br/>
+  <% end %>
+</p>
 
 <%= link_to 'Edit', edit_quiz_path(@quiz) %> |
 <%= link_to 'Back', quizzes_path %>
