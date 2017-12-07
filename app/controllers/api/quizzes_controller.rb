@@ -9,7 +9,11 @@ class QuizzesController < ApplicationController
   def index
     if @user
       if params[:subject]
-        @quizzes = Subject.find_by_name(params[:subject]).quizzes
+        if Subject.find_by_name(params[:subject])
+          @quizzes = Subject.find_by_name(params[:subject]).quizzes
+	else
+	  @quizzes = []
+	end
       else
         @quizzes = Quiz.all
       end
