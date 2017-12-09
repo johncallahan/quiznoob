@@ -27,16 +27,8 @@ class QuizzesController < ApplicationController
   # GET /quizzes/1.json
   def show
     if @user
-      render :json => @quiz
+      render :json => @quiz.as_json.merge({unattempted: @quiz.unattempted(@user)})
     else 
-      render text: "Token failed verification", status: 422
-    end
-  end
-
-  def unattempted
-    if @user
-      render :json => 
-    else
       render text: "Token failed verification", status: 422
     end
   end
