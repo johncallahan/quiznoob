@@ -1,7 +1,7 @@
 module Api
 class QuizzesController < ApplicationController
   before_action :set_user
-  before_action :set_quiz, only: [:show]
+  before_action :set_quiz, only: [:show, :unattempted]
   skip_before_filter  :verify_authenticity_token
 
   # GET /quizzes
@@ -27,8 +27,16 @@ class QuizzesController < ApplicationController
   # GET /quizzes/1.json
   def show
     if @user
-      render :json => @quiz.questions
+      render :json => @quiz
     else 
+      render text: "Token failed verification", status: 422
+    end
+  end
+
+  def unattempted
+    if @user
+      render :json => 
+    else
       render text: "Token failed verification", status: 422
     end
   end

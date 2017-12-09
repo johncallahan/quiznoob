@@ -12,7 +12,7 @@
 </p>
 <% @question.answers.each do |answer| %>
 <p>
-  <%= answer.name %><%= answer == @question.answer ? "*" : "" %><br/>
+  <%= link_to answer.name, answer_path(answer) %><%= answer == @question.answer ? "*" : "" %><br/>
 </p>
 <% end %>
 
