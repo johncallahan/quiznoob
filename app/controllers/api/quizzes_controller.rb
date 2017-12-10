@@ -19,7 +19,7 @@ class QuizzesController < ApplicationController
         @quizzes = Quiz.all
       end
       @quizzes.each do |q|
-        @equizzes << q.as_json.merge({unattempted: q.unattempted(@user).length, numquestions: q.questions.length})
+        @equizzes << q.as_json.merge({unattempted: q.unattempted(@user), numquestions: q.questions.length})
       end
       render :json => @equizzes
     else 
