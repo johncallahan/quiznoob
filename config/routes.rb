@@ -28,6 +28,7 @@ Rails.application.routes.draw do
 #    resources :users, param: :access_token
     post   'quizzes' => 'quizzes#index'
     post   'quizzes/:id' => 'quizzes#show'
+    post   'questions/:id' => 'questions#show'
     post   'attempts' => 'attempts#create'
 #    resources :password_resets, only: [:new, :create, :edit, :update]
   end
