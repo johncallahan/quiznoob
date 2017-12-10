@@ -8,6 +8,7 @@ class QuizzesController < ApplicationController
   # GET /quizzes.json
   def index
     if @user
+      @equizzes = []
       if params[:subject]
         if Subject.find_by_name(params[:subject])
           @quizzes = Subject.find_by_name(params[:subject]).quizzes
@@ -17,7 +18,10 @@ class QuizzesController < ApplicationController
       else
         @quizzes = Quiz.all
       end
-      render :json => @quizzes
+      @quizzes.each do |q|
+        @equizzes << q.as_json.merge({unattempted: q.unattempted(@user).length, numquestions: q.questions.length})
+      end
+      render :json => @equizzes
     else 
       render text: "Token failed verification", status: 422
     end
