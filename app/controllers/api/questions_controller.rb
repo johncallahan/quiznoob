@@ -8,7 +8,7 @@ class QuestionsController < ApplicationController
   # GET /questions/1.json
   def show
     if @user
-      render :json => @question
+      render :json => @question.to_json(:include => :answers)
     else 
       render text: "Token failed verification", status: 422
     end
