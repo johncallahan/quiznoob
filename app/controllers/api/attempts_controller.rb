@@ -26,7 +26,13 @@ class AttemptsController < ApplicationController
   # POST /attempts
   # POST /attempts.json
   def create
-    @attempt = Attempt.new(attempt_params.merge(:user => @user, :result => @result))
+    puts "CREATE ATTEMPT"
+    @attempt = Attempt.new()
+    @attempt.user = @user
+    @attempt.quiz = @quiz
+    @attempt.question = @question
+    @attempt.answer = @answer
+    @attempt.result = @result
 
     respond_to do |format|
       if @attempt.save
@@ -40,22 +46,27 @@ class AttemptsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_attempt
+      puts "SET ATTEMPT"
       @attempt = Attempt.find(params[:id])
     end
 
     def set_result
-      question = Question.find(params[:question_id])
-      answer = Answer.find(params[:answer_id])
-      @result = question.answer === answer
+      puts "SET RESULT"
+      @quiz = Quiz.find(params[:quiz_id])
+      @question = Question.find(params[:question_id])
+      @answer = Answer.find(params[:answer_id])
+      @result = @question.answer === @answer
     end
 
     def set_user
+      puts "SET USER"
       @user = User.find_by(access_token: params[:access_token])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def attempt_params
-      params.require(:attempt).permit(:quiz_id, :question_id, :answer_id )
+      puts "ATTEMPT PARAMS"
+      params.permit(:quiz_id, :question_id, :answer_id )
     end
 end
 end

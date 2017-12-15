@@ -7,8 +7,9 @@
     <tr>
       <th>User</th>
       <th>Quiz</th>
-      <th>Progress</th>
-      <th>Num of Qs</th>
+      <th>Question</th>
+      <th>Guess</th>
+      <th>Result</th>
       <th>Time zone</th>
       <th>Now</th>
       <th>End of Day</th>
@@ -22,14 +23,15 @@
       <tr>
         <td><%= attempt.user.email %></td>
         <td><%= attempt.quiz.name %></td>
-        <td><%= attempt.progress %>/</td>
-        <td><%= attempt.quiz.numquestions %></td>
+	<td><%= attempt.question.name %></td>
+	<td><%= attempt.answer.name %></td>
+	<td><%= attempt.result %></td>
 	<td><%= Time.zone %></td>
         <td><%= DateTime.now.in_time_zone %></td>
-        <td><%= attempt.startedat.end_of_day.in_time_zone %></td>
+        <td><%= attempt.created_at.end_of_day.in_time_zone %></td>
         <td>
-	  <% if DateTime.now < attempt.startedat.end_of_day %>
-            <%= distance_of_time_in_words(DateTime.now,attempt.startedat.end_of_day) %>
+	  <% if DateTime.now < attempt.created_at.end_of_day %>
+            <%= distance_of_time_in_words(DateTime.now,attempt.created_at.end_of_day) %>
           <% else %>
             Expired
           <% end %>
