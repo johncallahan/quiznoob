@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @redemption.user %>
+</p>
+
+<p>
+  <strong>Reward:</strong>
+  <%= @redemption.reward %>
+</p>
+
+<p>
+  <strong>Hearts:</strong>
+  <%= @redemption.hearts %>
+</p>
+
+<%= link_to 'Edit', edit_redemption_path(@redemption) %> |
+<%= link_to 'Back', redemptions_path %>

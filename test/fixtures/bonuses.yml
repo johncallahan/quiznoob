@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  quiz_id: 
+  hearts: 1
+  award_id: 
+
+two:
+  user_id: 
+  quiz_id: 
+  hearts: 1
+  award_id: 

@@ -16,6 +16,10 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
+    <%= f.label :hearts %><br>
+    <%= f.number_field :hearts %>
+  </div>
+  <div class="field">
     <%= f.label :quiz_ids %>
     <%= f.select :quiz_ids, Quiz.all.collect {|x| [x.name, x.id]}, {}, :multiple => true %>
   </div>
