@@ -29,10 +29,14 @@ Rails.application.routes.draw do
     get    'verify'  => 'sessions#verify_access_token'
 # uncomment the following line to reenable registration from the mobile app
 #    resources :users, param: :access_token
+    post   'subjects' => 'subjects#index'
+    post   'subjects/:id' => 'subjects#show'
     post   'quizzes' => 'quizzes#index'
     post   'quizzes/:id' => 'quizzes#show'
     post   'questions/:id' => 'questions#show'
     post   'attempts' => 'attempts#create'
+    post   'rewards' => 'rewards#index'
+    post   'rewards/:id' => 'rewards#show'
 #    resources :password_resets, only: [:new, :create, :edit, :update]
   end
 
