@@ -33,6 +33,11 @@ class AttemptsController < ApplicationController
     @attempt.answer = @answer
     @attempt.result = @result
 
+    if @result 
+      @user.hearts = @user.hearts + @question.points
+      @user.save!
+    end
+
     respond_to do |format|
       if @attempt.save
         format.json { render json: @attempt.to_json(:include => :user), status: :created }
