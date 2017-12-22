@@ -37,6 +37,8 @@ Rails.application.routes.draw do
     post   'attempts' => 'attempts#create'
     post   'rewards' => 'rewards#index'
     post   'rewards/:id' => 'rewards#show'
+    post   'bonuses' => 'bonuses#create'
+    post   'bonuses/:id' => 'bonuses#show'
 #    resources :password_resets, only: [:new, :create, :edit, :update]
   end
 

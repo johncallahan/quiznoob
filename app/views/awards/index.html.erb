@@ -15,8 +15,8 @@
   <tbody>
     <% @awards.each do |award| %>
       <tr>
-        <td><%= award.user.name %></td>
-        <td><%= award.hearts %></td>
+        <td><%= award.source.user.name %></td>
+        <td><%= award.source.points %></td>
         <td><%= award.source %></td>
         <td><%= link_to 'Show', award %></td>
         <td><%= link_to 'Edit', edit_award_path(award) %></td>

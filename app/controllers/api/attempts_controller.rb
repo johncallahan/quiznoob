@@ -33,14 +33,17 @@ class AttemptsController < ApplicationController
     @attempt.answer = @answer
     @attempt.result = @result
 
-    if @result 
-      @user.hearts = @user.hearts + @question.points
-      @user.save!
-    end
-
     respond_to do |format|
       if @attempt.save
-        format.json { render json: @attempt.to_json(:include => :user), status: :created }
+        if @result 
+          @award = Award.new
+          @award.source = @attempt
+	  @award.save!
+          @user.hearts = @user.hearts + @question.points
+          @user.save!
+        end
+
+        format.json { render json: @attempt.as_json.merge({hearts: @user.hearts}), status: :created }
       else
         format.json { render json: nil, status: :not_acceptable }
       end

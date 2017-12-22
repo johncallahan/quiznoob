@@ -9,4 +9,8 @@ class Attempt < ActiveRecord::Base
   belongs_to :quiz
   belongs_to :question
   belongs_to :answer
+
+  def points
+    question.points
+  end
 end

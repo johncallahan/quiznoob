@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171222030741) do
+ActiveRecord::Schema.define(version: 20171222121345) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
@@ -64,8 +64,6 @@ ActiveRecord::Schema.define(version: 20171222030741) do
   add_index "attempts", ["user_id"], name: "index_attempts_on_user_id", using: :btree
 
   create_table "awards", force: :cascade do |t|
-    t.integer  "user_id",     limit: 4
-    t.integer  "hearts",      limit: 4
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.integer  "source_id",   limit: 4
@@ -73,12 +71,10 @@ ActiveRecord::Schema.define(version: 20171222030741) do
   end
 
   add_index "awards", ["source_type", "source_id"], name: "index_awards_on_source_type_and_source_id", using: :btree
-  add_index "awards", ["user_id"], name: "index_awards_on_user_id", using: :btree
 
   create_table "bonuses", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
     t.integer  "quiz_id",    limit: 4
-    t.integer  "hearts",     limit: 4
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
   end
@@ -188,7 +184,6 @@ ActiveRecord::Schema.define(version: 20171222030741) do
   add_foreign_key "attempts", "questions"
   add_foreign_key "attempts", "quizzes"
   add_foreign_key "attempts", "users"
-  add_foreign_key "awards", "users"
   add_foreign_key "bonuses", "quizzes"
   add_foreign_key "bonuses", "users"
   add_foreign_key "question_answers", "answers"
