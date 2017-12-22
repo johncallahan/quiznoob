@@ -8,7 +8,8 @@ class QuestionsController < ApplicationController
   # GET /questions/1.json
   def show
     if @user
-      @equestion = @question.as_json(:include => :answers).merge({:hearts => @user.hearts})
+      @answers = @question.answers.shuffle
+      @equestion = @question.as_json.merge({:answers => @answers, :hearts => @user.hearts})
       render :json => @equestion
     else 
       render text: "Token failed verification", status: 422

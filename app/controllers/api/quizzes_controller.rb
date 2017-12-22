@@ -19,7 +19,7 @@ class QuizzesController < ApplicationController
         @quizzes = Quiz.all
       end
       @quizzes.each do |q|
-        @equizzes << q.as_json.merge({unattempted: q.unattempted(@user), numquestions: q.questions.count})
+        @equizzes << q.as_json.merge({unattempted: q.unattempted(@user).shuffle, numquestions: q.questions.count})
       end
       render :json => {quizzes:@equizzes,hearts:@user.hearts}.to_json
     else 
@@ -31,7 +31,8 @@ class QuizzesController < ApplicationController
   # GET /quizzes/1.json
   def show
     if @user
-      render :json => @quiz.as_json.merge({unattempted: @quiz.unattempted(@user), numquestions: @quiz.questions.count, hearts: @user.hearts})
+      @unattempted = @quiz.unattempted(@user).shuffle
+      render :json => @quiz.as_json.merge({unattempted: @unattempted, numquestions: @quiz.questions.count, hearts: @user.hearts})
     else 
       render text: "Token failed verification", status: 422
     end
