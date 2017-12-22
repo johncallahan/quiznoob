@@ -8,8 +8,12 @@ class SubjectsController < ApplicationController
   # GET /subjects.json
   def index
     if @user
+      @esubjects = [];
       @subjects = Subject.all
-      render :json => @subjects
+      @subjects.each do |s|
+        @esubjects << s.as_json.merge({numquizzes: s.quizzes.count})
+      end
+      render :json => {subjects:@esubjects,hearts:@user.hearts}.to_json
     else 
       render text: "Token failed verification", status: 422
     end
