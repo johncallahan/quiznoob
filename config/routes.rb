@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     get    'verify'  => 'sessions#verify_access_token'
 # uncomment the following line to reenable registration from the mobile app
 #    resources :users, param: :access_token
+    post   'users' => 'users#show'
     post   'subjects' => 'subjects#index'
     post   'subjects/:id' => 'subjects#show'
     post   'quizzes' => 'quizzes#index'
