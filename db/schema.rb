@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171222121345) do
+ActiveRecord::Schema.define(version: 20171224114828) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
@@ -98,6 +98,7 @@ ActiveRecord::Schema.define(version: 20171222121345) do
     t.datetime "updated_at",             null: false
     t.integer  "answer_id",  limit: 4
     t.integer  "points",     limit: 4
+    t.string   "imageurl",   limit: 255
   end
 
   add_index "questions", ["answer_id"], name: "index_questions_on_answer_id", using: :btree
@@ -151,12 +152,14 @@ ActiveRecord::Schema.define(version: 20171222121345) do
     t.integer  "cost",        limit: 4
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+    t.string   "event",       limit: 255
   end
 
   create_table "subjects", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "name",        limit: 255
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.string   "description", limit: 255
   end
 
   create_table "users", force: :cascade do |t|
@@ -173,6 +176,7 @@ ActiveRecord::Schema.define(version: 20171222121345) do
     t.datetime "lastlogin"
     t.integer  "utcoffset",       limit: 4
     t.integer  "hearts",          limit: 4
+    t.string   "account",         limit: 255
   end
 
   add_index "users", ["access_token"], name: "index_users_on_access_token", using: :btree

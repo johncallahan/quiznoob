@@ -5,6 +5,10 @@
   <%= @question.name %>
 </p>
 <p>
+  <strong>Image URL:</strong>
+  <%= @question.imageurl %>
+</p>
+<p>
   <strong>Quizzes:</strong>
   <% @question.quizzes.each do |quiz| %>
     <%= quiz.name %> (<%= quiz.subject.name %>)<br/>

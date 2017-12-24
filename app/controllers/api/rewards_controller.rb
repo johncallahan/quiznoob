@@ -19,7 +19,7 @@ class RewardsController < ApplicationController
   # GET /rewards/1.json
   def show
     if @user
-      render :json => @reward.as_json
+      render :json => @reward.as_json.merge({:hearts => @user.hearts})
     else 
       render text: "Token failed verification", status: 422
     end
