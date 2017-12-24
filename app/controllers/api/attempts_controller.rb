@@ -8,7 +8,7 @@ class AttemptsController < ApplicationController
 
   def index
     if @user
-      @attempts = Attempt.where("user_id = ${@user.id}")
+      @attempts = Attempt.where("user_id = #{@user.id}")
       render :json => @attempts
     else
       render text: "Token failed verification", status: 422

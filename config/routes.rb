@@ -40,6 +40,7 @@ Rails.application.routes.draw do
     post   'rewards/:id' => 'rewards#show'
     post   'bonuses' => 'bonuses#create'
     post   'bonuses/:id' => 'bonuses#show'
+    post   'redemptions' => 'redemptions#create'
 #    resources :password_resets, only: [:new, :create, :edit, :update]
   end
 

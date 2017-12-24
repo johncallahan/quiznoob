@@ -9,7 +9,7 @@ class RewardsController < ApplicationController
   def index
     if @user
       @rewards = Reward.all
-      render :json => @rewards
+      render :json => {rewards:@rewards,hearts:@user.hearts}.to_json
     else 
       render text: "Token failed verification", status: 422
     end
