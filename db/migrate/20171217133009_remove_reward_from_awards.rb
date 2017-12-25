@@ -1,5 +1,5 @@
 class RemoveRewardFromAwards < ActiveRecord::Migration
   def change
-    remove_reference :awards, :reward, index: true, foreign_key: true
+    remove_reference :awards, :reward
   end
 end
