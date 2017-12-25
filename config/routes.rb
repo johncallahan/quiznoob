@@ -27,8 +27,6 @@ Rails.application.routes.draw do
     post   'login'   => 'sessions#create'
     delete 'logout'  => 'sessions#destroy'
     get    'verify'  => 'sessions#verify_access_token'
-# uncomment the following line to reenable registration from the mobile app
-    resources :users, param: :access_token
     post   'users' => 'users#show'
     post   'subjects' => 'subjects#index'
     post   'subjects/:id' => 'subjects#show'
@@ -41,7 +39,6 @@ Rails.application.routes.draw do
     post   'bonuses' => 'bonuses#create'
     post   'bonuses/:id' => 'bonuses#show'
     post   'redemptions' => 'redemptions#create'
-#    resources :password_resets, only: [:new, :create, :edit, :update]
   end
 
 end
