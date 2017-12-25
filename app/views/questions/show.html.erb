@@ -4,10 +4,12 @@
   <strong>Name:</strong>
   <%= @question.name %>
 </p>
+<% if @question.imageurl != nil %>
 <p>
   <strong>Image URL:</strong>
-  <%= @question.imageurl %>
+  <%= image_tag("#{@question.imageurl}", height: '200', width: '300') %>
 </p>
+<% end %>
 <p>
   <strong>Quizzes:</strong>
   <% @question.quizzes.each do |quiz| %>
