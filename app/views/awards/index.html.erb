@@ -1,8 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Awards</h1>
-
-<table>
+<h1 style='text-align: center;'>Awards</h1>
+<br><br>
+<div class="col-md-6 col-md-offset-3">
+<%= link_to 'New Award', new_award_path %>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>User</th>
@@ -15,8 +17,8 @@
   <tbody>
     <% @awards.each do |award| %>
       <tr>
-        <td><%= award.source.user.name %></td>
-        <td><%= award.source.points %></td>
+        <td><%= award.source ? award.source.user.name : "" %></td>
+        <td><%= award.source ? award.source.points : "" %></td>
         <td><%= award.source %></td>
         <td><%= link_to 'Show', award %></td>
         <td><%= link_to 'Edit', edit_award_path(award) %></td>
@@ -25,7 +27,5 @@
     <% end %>
   </tbody>
 </table>
+</div>
 
-<br>
-
-<%= link_to 'New Award', new_award_path %>

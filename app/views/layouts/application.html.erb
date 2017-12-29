@@ -16,9 +16,24 @@
   <% end %>
 
   <% if admin_signed_in? %>
-    <li>
-    <%= link_to('Logout', destroy_admin_session_path, method: :delete) %>
-    </li>
+    <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+        <nav>
+          <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to "Answers",  answers_path %></li>
+            <li><%= link_to "Attempts",  attempts_path %></li>
+            <li><%= link_to "Awards",  awards_path %></li>
+            <li><%= link_to "Questions",  questions_path %></li>
+            <li><%= link_to "Quizzes",  quizzes_path %></li>
+            <li><%= link_to "Redemptions",  redemptions_path %></li>
+            <li><%= link_to "Rewards",  rewards_path %></li>
+            <li><%= link_to "Subjects",  subjects_path %></li>
+            <li><%= link_to "Users",  users_path %></li>
+            <li><%= link_to('Logout', destroy_admin_session_path, method: :delete) %></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
   <% end %>
 
   <%= yield %>
