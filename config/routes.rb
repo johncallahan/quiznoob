@@ -2,7 +2,10 @@ Rails.application.routes.draw do
 
   devise_for :admins
 
+#  root 'welcome#welcome'
+
   authenticate :admin do
+    root 'users#index'
     resources :redemptions
     resources :awards
     resources :rewards
@@ -20,8 +23,6 @@ Rails.application.routes.draw do
     resources :users
     resources :password_resets, only: [:new, :create, :edit, :update]
   end
-
-  root 'welcome#welcome'
 
   namespace :api do
     post   'login'   => 'sessions#create'
