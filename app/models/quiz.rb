@@ -11,11 +11,9 @@ class Quiz < ActiveRecord::Base
 
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|
-      csv << ["quiz","description","bonus","subject","question","url","points","answer","alt1","alt2","alt3","alt4","alt5"]
+      csv << ["quiz","description","bonus","subject"]
       all.each do |quiz|
-        quiz.questions.each do |question|
-          csv << [quiz.name, quiz.description, quiz.points, quiz.subject.name, question.name, question.imageurl, question.points, question.answer.name].concat(question.answers.map{|x| x.name})
-        end
+        csv << [quiz.name, quiz.description, quiz.points, quiz.subject.name]
       end
     end
   end
@@ -27,12 +25,8 @@ class Quiz < ActiveRecord::Base
       row = Hash[[header, spreadsheet.row(i)].transpose]
       puts(row["quiz"])
       puts(row["description"])
-      puts(row["alt1"])
-      puts(row["alt2"])
-      puts(row["alt3"])
-      puts(row["alt4"])
-      puts(row["alt5"])
-      puts(row["alt6"])
+      puts(row["bonus"])
+      puts(row["subject"])
 # Question.where(answer: Answer.where(name: row["answer"])).where(name: row["question"])
 #      quiz = find_by(id: row["id"]) || new
 #      quiz.attributes = row.to_hash

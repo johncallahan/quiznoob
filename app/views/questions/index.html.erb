@@ -1,6 +1,17 @@
 <h1 style='text-align: center;'>Questions</h1>
 <div class="col-md-6 col-md-offset-3">
-<%= button_to 'New Question', new_question_path, method: :get %>
+<table>
+<tr>
+<td><%= button_to 'New Question', new_question_path, method: :get %></td>
+<td>&nbsp;</td>
+<td><%= button_to 'Export', export_questions_path(format: "xls") %></td>
+<td>&nbsp;</td>
+<td>
+<%= form_tag import_questions_path, multipart: true do %>
+<table><tr><td><%= submit_tag "Import" %></td><td>&nbsp;</td><td><%= file_field_tag :file %></td></tr></table>
+<% end %>
+</td>
+</tr>
 <table class="table table-striped">
   <thead>
     <tr>

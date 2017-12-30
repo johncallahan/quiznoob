@@ -61,6 +61,19 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def import
+    Question.import(params[:file])
+    redirect_to questions_url, notice: 'Questions imported.'
+  end
+
+  def export
+    @questions = Question.all
+    respond_to do |format|
+      format.csv { send_data @questions.to_csv }
+      format.xls { send_data @questions.to_csv(col_sep: "\t"), filename: 'questions.xls'}
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_question

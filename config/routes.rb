@@ -12,7 +12,12 @@ Rails.application.routes.draw do
     resources :answers
     resources :subjects
     resources :answers
-    resources :questions
+    resources :questions do
+      collection do
+        post :import
+	post :export
+      end
+    end
     resources :attempts
     resources :quizzes do
       collection do
