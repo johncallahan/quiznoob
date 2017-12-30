@@ -17,19 +17,23 @@
     <tr>
       <th>Name</th>
       <th>Points</th>
+      <th>Quiz</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @questions.each do |question| %>
+    <%   question.quizzes.each do |quiz| %>
       <tr>
         <td><%= question.name %></td>
         <td><%= question.points %></td>
+        <td><%= quiz.name %></td>
         <td><%= link_to 'Show', question %></td>
         <td><%= link_to 'Edit', edit_question_path(question) %></td>
         <td><%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
+    <%   end %>
     <% end %>
   </tbody>
 </table>

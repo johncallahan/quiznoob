@@ -22,21 +22,68 @@ class Question < ActiveRecord::Base
     header = spreadsheet.row(1)
     (2..spreadsheet.last_row).each do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
-      puts(row["quiz"])
-      puts(row["question"])
-      puts(row["url"])
-      puts(row["points"])
-      puts(row["answer"])
-      puts(row["alt1"])
-      puts(row["alt2"])
-      puts(row["alt3"])
-      puts(row["alt4"])
-      puts(row["alt5"])
-      puts(row["alt6"])
-# Question.where(answer: Answer.where(name: row["answer"])).where(name: row["question"])
-#      quiz = find_by(id: row["id"]) || new
-#      quiz.attributes = row.to_hash
-#      quiz.save!
+
+      quiz = Quiz.find_by(name: row["quiz"])
+
+      answer = Answer.find_by(name: row["answer"]) || Answer.new
+      answer.name = row["answer"]
+      answer.save!
+
+      answers = []
+
+      if(row["alt1"] != nil and (row["alt1"].is_a?(Numeric) or row["alt1"].length > 0))
+        alt1 = Answer.find_by(name: row["alt1"]) || Answer.new
+        alt1.name = row["alt1"]
+        answers << alt1
+	alt1.save!
+      end
+
+      if(row["alt2"] != nil and (row["alt2"].is_a?(Numeric) or row["alt2"].length > 0))
+        alt2 = Answer.find_by(name: row["alt2"]) || Answer.new
+        alt2.name = row["alt2"]
+        answers << alt2
+	alt2.save!
+      end
+
+      if(row["alt3"] != nil and (row["alt3"].is_a?(Numeric) or row["alt3"].length > 0))
+        alt3 = Answer.find_by(name: row["alt3"]) || Answer.new
+        alt3.name = row["alt3"]
+        answers << alt3
+	alt3.save!
+      end
+
+      if(row["alt4"] != nil and (row["alt4"].is_a?(Numeric) or row["alt4"].length > 0))
+        alt4 = Answer.find_by(name: row["alt4"]) || Answer.new
+        alt4.name = row["alt4"]
+        answers << alt4
+	alt4.save!
+      end
+
+
+      if(row["alt5"] != nil and (row["alt5"].is_a?(Numeric) or row["alt5"].length > 0))
+        alt5 = Answer.find_by(name: row["alt5"]) || Answer.new
+        alt5.name = row["alt5"]
+        answers << alt5
+	alt5.save!
+      end
+
+
+      if(row["alt6"] != nil and (row["alt6"].is_a?(Numeric) or row["alt6"].length > 0))
+        alt6 = Answer.find_by(name: row["alt6"]) || Answer.new
+        alt6.name = row["alt6"]
+        answers << alt6
+	alt.save!
+      end
+
+      questions = where(answer: Answer.where(name: row["answer"])).where(name: row["question"])
+      question = questions.count > 0 ? questions.first : new
+      question.name = row["question"]
+      question.quizzes |= [quiz]
+      question.imageurl = row["url"]
+      question.points = row["points"].to_i
+      question.answer = answer
+      question.answers = answers
+      question.save!
     end
   end
 

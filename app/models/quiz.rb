@@ -23,14 +23,15 @@ class Quiz < ActiveRecord::Base
     header = spreadsheet.row(1)
     (2..spreadsheet.last_row).each do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
-      puts(row["quiz"])
-      puts(row["description"])
-      puts(row["bonus"])
-      puts(row["subject"])
-# Question.where(answer: Answer.where(name: row["answer"])).where(name: row["question"])
-#      quiz = find_by(id: row["id"]) || new
-#      quiz.attributes = row.to_hash
-#      quiz.save!
+      subject = Subject.find_by(name: row["subject"]) || Subject.new
+      subject.name = row["subject"]
+      quiz = find_by(name: row["quiz"]) || new
+      quiz.name = row["quiz"]
+      quiz.description = row["description"]
+      quiz.points = row["bonus"].to_i
+      quiz.subject = subject
+      subject.save!
+      quiz.save!
     end
   end
 
