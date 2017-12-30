@@ -8,4 +8,36 @@ class Quiz < ActiveRecord::Base
   def unattempted(user)
     return questions.joins("LEFT OUTER JOIN attempts ON attempts.question_id = questions.id AND attempts.user_id = " + user.id.to_s + " AND attempts.created_at > '" + DateTime.now.in_time_zone("EST").beginning_of_day.in_time_zone(Time.zone).strftime("%Y-%m-%d %H:%M:%S") + "'").where(attempts: { id: nil }).map{|x| x.id}
   end
+
+  def self.to_csv(options = {})
+    CSV.generate(options) do |csv|
+      csv << column_names
+      all.each do |quiz|
+        csv << quiz.attributes.values_at(*column_names)
+      end
+    end
+  end
+
+  def self.import(file)
+    spreadsheet = Roo::Spreadsheet.open(file.path)
+    header = spreadsheet.row(1)
+    (2..spreadsheet.last_row).each do |i|
+      row = Hash[[header, spreadsheet.row(i)].transpose]
+      puts(row["name"])
+      puts(row["description"])
+#      quiz = find_by(id: row["id"]) || new
+#      quiz.attributes = row.to_hash
+#      quiz.save!
+    end
+  end
+
+  def self.open_spreadsheet(file)
+    case File.extname(file.original_filename)
+      when ".csv" then Roo::CSV.new(file.path, nil, :ignore)
+      when ".xls" then Roo::Excel.new(file.path, nil, :ignore)
+      when ".xlsx" then Roo::Excelx.new(file.path, nil, :ignore)
+      else raise "Unknown file type: #{file.original_filename}"
+    end
+  end
+
 end

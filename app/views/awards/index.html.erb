@@ -1,9 +1,6 @@
-<p id="notice"><%= notice %></p>
-
 <h1 style='text-align: center;'>Awards</h1>
-<br><br>
 <div class="col-md-6 col-md-offset-3">
-<%= link_to 'New Award', new_award_path %>
+<%= button_to 'New Award', new_award_path, method: :get  %>
 <table class="table table-striped">
   <thead>
     <tr>

@@ -1,8 +1,19 @@
-<p id="notice"><%= notice %></p>
-
 <h1 style='text-align: center;'>Quizzes</h1>
-<br><br>
 <div class="col-md-6 col-md-offset-3">
+<table>
+<tr>
+<td><%= button_to 'New Quiz', new_quiz_path, method: :get %></td>
+<td>&nbsp;</td>
+<td><%= button_to 'Export', export_quizzes_path(format: "xls") %></td>
+<td>&nbsp;</td>
+<td>
+<%= form_tag import_quizzes_path, multipart: true do %>
+<table><tr><td><%= submit_tag "Import" %></td><td>&nbsp;</td><td><%= file_field_tag :file %></td></tr></table>
+<% end %>
+</td>
+</tr>
+</table>
+<br/>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -26,7 +37,4 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Quiz', new_quiz_path %>
+</div>

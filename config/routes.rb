@@ -14,7 +14,12 @@ Rails.application.routes.draw do
     resources :answers
     resources :questions
     resources :attempts
-    resources :quizzes
+    resources :quizzes do
+      collection do
+        post :import
+	post :export
+      end
+    end
     get    'signup'  => 'users#new'
     get    'login'   => 'sessions#new'
     post   'login'   => 'sessions#create'
