@@ -6,7 +6,7 @@ class Quiz < ActiveRecord::Base
   belongs_to :subject
 
   def unattempted(user)
-    return questions.joins("LEFT OUTER JOIN attempts ON attempts.question_id = questions.id AND attempts.user_id = " + user.id.to_s + " AND attempts.created_at > '" + DateTime.now.in_time_zone("EST").beginning_of_day.in_time_zone(Time.zone).strftime("%Y-%m-%d %H:%M:%S") + "'").where(attempts: { id: nil }).map{|x| x.id}
+    return questions.joins("LEFT OUTER JOIN attempts ON attempts.question_id = questions.id AND attempts.user_id = " + user.id.to_s + " AND attempts.created_at > '" + DateTime.now.in_time_zone("EST").beginning_of_day.in_time_zone(Time.zone).strftime("%Y-%m-%d %H:%M:%S") + "'").where(attempts: { id: nil }).sample(10).map{|x| x.id}
   end
 
   def self.to_csv(options = {})
