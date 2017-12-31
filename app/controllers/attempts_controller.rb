@@ -5,7 +5,7 @@ class AttemptsController < ApplicationController
   # GET /attempts.json
   def index
     Time.zone = "EST"
-    @attempts = Attempt.all
+    @attempts = Attempt.all.order(id: :desc)
   end
 
   # GET /attempts/1
