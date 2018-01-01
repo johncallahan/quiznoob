@@ -5,7 +5,7 @@ module Api
 
     def index
       if @user
-        render :json => User.all.as_json(:only => [:id,:name,:hearts])
+        render :json => User.all.order(hearts: :desc).as_json(:only => [:id,:name,:hearts])
       else 
         render text: "Token failed verification", status: 422
       end
