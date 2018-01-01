@@ -1,15 +1,23 @@
 module Api
   class UsersController < ApplicationController
-    before_action :set_user, only: [:show]
+    before_action :set_user, only: [:index, :show]
     skip_before_filter  :verify_authenticity_token
+
+    def index
+      if @user
+        render :json => User.all.as_json(:only => [:id,:name,:hearts])
+      else 
+        render text: "Token failed verification", status: 422
+      end
+    end
 
     # GET /users/1
     def show
-    if @user
-      render :json => @user.as_json(:only => [:id,:name,:hearts])
-    else 
-      render text: "Token failed verification", status: 422
-    end
+      if @user
+        render :json => @user.as_json(:only => [:id,:name,:hearts])
+      else 
+        render text: "Token failed verification", status: 422
+      end
     end
 
     private
