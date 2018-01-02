@@ -2,17 +2,17 @@
 
 <p>
   <strong>User:</strong>
-  <%= @redemption.user %>
+  <%= @redemption.user.name %>
 </p>
 
 <p>
   <strong>Reward:</strong>
-  <%= @redemption.reward %>
+  <%= @redemption.reward.name %>
 </p>
 
 <p>
-  <strong>Hearts:</strong>
-  <%= @redemption.hearts %>
+  <strong>Cost:</strong>
+  <%= @redemption.cost %>
 </p>
 
 <%= link_to 'Edit', edit_redemption_path(@redemption) %> |

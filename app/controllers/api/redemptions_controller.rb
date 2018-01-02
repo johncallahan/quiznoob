@@ -22,7 +22,7 @@ class RedemptionsController < ApplicationController
           @user.hearts = @user.hearts - @reward.cost
           @user.save!
 
-          format.json { render json: @redemption.as_json.merge({hearts: @user.hearts}), status: :created }
+          format.json { render json: @redemption.as_json(include: {reward: {only: :name}}).merge({hearts: @user.hearts}), status: :created }
         else
           format.json { render json: nil, status: :not_acceptable }
         end

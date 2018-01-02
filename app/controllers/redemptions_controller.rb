@@ -4,7 +4,7 @@ class RedemptionsController < ApplicationController
   # GET /redemptions
   # GET /redemptions.json
   def index
-    @redemptions = Redemption.all
+    @redemptions = Redemption.all.order(created_at: :desc)
   end
 
   # GET /redemptions/1
