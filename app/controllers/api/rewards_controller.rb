@@ -8,7 +8,7 @@ class RewardsController < ApplicationController
   # GET /rewards.json
   def index
     if @user
-      @rewards = Reward.all
+      @rewards = Reward.where(enabled: true)
       render :json => {rewards:@rewards,hearts:@user.hearts}.to_json
     else 
       render text: "Token failed verification", status: 422

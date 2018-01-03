@@ -4,6 +4,7 @@
 <table class="table table-striped">
   <thead>
     <tr>
+      <th>Enabled</th>
       <th>Name</th>
       <th>Description</th>
       <th>Event</th>
@@ -15,6 +16,7 @@
   <tbody>
     <% @rewards.each do |reward| %>
       <tr>
+        <td><%= reward.enabled %></td>
         <td><%= reward.name %></td>
         <td><%= reward.description %></td>
         <td><%= reward.event %></td>

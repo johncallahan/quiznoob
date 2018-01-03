@@ -1,7 +1,29 @@
-
-<h1>
-  <%= @user.name %>
-</h1>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<h1 style='text-align: center;'><%= @user.name %></h1>
+<div class="col-md-6 col-md-offset-3">
+<table>
+<tr>
+<td><%= button_to 'Edit', edit_user_path(@user), method: :get %></td>
+<td>&nbsp;</td>
+<td><%= button_to 'Back', users_path, method: :get  %></td>
+<td>&nbsp;</td>
+</tr>
+</table>
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Cost</th>
+        <th>Created</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @redemptions.each do |r| %>
+        <tr>
+          <td><%= r.reward.name %></td>
+          <td><%= r.cost %></td>
+          <td><%= distance_of_time_in_words(DateTime.now,r.created_at) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
