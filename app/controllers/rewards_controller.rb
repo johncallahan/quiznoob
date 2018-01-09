@@ -54,10 +54,13 @@ class RewardsController < ApplicationController
   # DELETE /rewards/1
   # DELETE /rewards/1.json
   def destroy
-    @reward.destroy
-    respond_to do |format|
-      format.html { redirect_to rewards_url, notice: 'Reward was successfully destroyed.' }
-      format.json { head :no_content }
+    if @reward.destroy
+      respond_to do |format|
+        format.html { redirect_to rewards_url, notice: 'Reward was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    else
+      render :action => :edit, :status => 409
     end
   end
 

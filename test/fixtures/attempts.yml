@@ -1,9 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  user_id: 
-  quiz_id: 
+ninetimesnine_correct:
+  user: one
+  quiz: multiplication
+  question: ninetimesnine
+  answer: eightyone
+  result: true
 
-two:
-  user_id: 
-  quiz_id: 
+ninetimesnine_wrong:
+  user: one
+  quiz: multiplication
+  question: ninetimesnine
+  answer: seventytwo
+  result: false

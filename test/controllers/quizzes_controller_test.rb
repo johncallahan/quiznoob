@@ -1,8 +1,10 @@
 require 'test_helper'
 
 class QuizzesControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
+
   setup do
-    @quiz = quizzes(:one)
+    @quiz = quizzes(:multiplication)
   end
 
   test "should get index" do
@@ -39,7 +41,13 @@ class QuizzesControllerTest < ActionController::TestCase
     assert_redirected_to quiz_path(assigns(:quiz))
   end
 
+  test "should not destroy quiz" do
+    delete :destroy, id: @quiz
+    assert_response 409
+  end
+
   test "should destroy quiz" do
+    @quiz.attempts.destroy_all
     assert_difference('Quiz.count', -1) do
       delete :destroy, id: @quiz
     end

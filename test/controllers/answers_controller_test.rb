@@ -1,8 +1,10 @@
 require 'test_helper'
 
 class AnswersControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
+
   setup do
-    @answer = answers(:one)
+    @answer = answers(:eightyone)
   end
 
   test "should get index" do
@@ -39,7 +41,14 @@ class AnswersControllerTest < ActionController::TestCase
     assert_redirected_to answer_path(assigns(:answer))
   end
 
+  test "should not destroy answer" do
+    delete :destroy, id: @answer
+    assert_response 409
+  end
+
   test "should destroy answer" do
+    @answer.attempts.destroy_all
+    @answer.questions.destroy_all
     assert_difference('Answer.count', -1) do
       delete :destroy, id: @answer
     end

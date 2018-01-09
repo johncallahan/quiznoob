@@ -1,8 +1,10 @@
 require 'test_helper'
 
 class SubjectsControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
+
   setup do
-    @subject = subjects(:one)
+    @subject = subjects(:mathematics)
   end
 
   test "should get index" do
@@ -39,7 +41,14 @@ class SubjectsControllerTest < ActionController::TestCase
     assert_redirected_to subject_path(assigns(:subject))
   end
 
+  test "should not destroy subject" do
+    delete :destroy, id: @subject
+    assert_response 409
+  end
+
   test "should destroy subject" do
+    @subject.quizzes.each{|q| q.attempts.destroy_all }
+    @subject.quizzes.destroy_all
     assert_difference('Subject.count', -1) do
       delete :destroy, id: @subject
     end

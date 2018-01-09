@@ -1,11 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  user_id: 
-  reward_id: 
-  hearts: 1
-
-two:
-  user_id: 
-  reward_id: 
-  hearts: 1
+getmoretime:
+  user: one
+  reward: moretime
+  cost: 1

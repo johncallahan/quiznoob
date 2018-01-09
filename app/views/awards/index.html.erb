@@ -4,7 +4,6 @@
   <thead>
     <tr>
       <th>User</th>
-      <th>Hearts</th>
       <th>Source</th>
       <th colspan="3"></th>
     </tr>
@@ -14,7 +13,6 @@
     <% @awards.each do |award| %>
       <tr>
         <td><%= award.source ? award.source.user.name : "" %></td>
-        <td><%= award.source ? award.source.points : "" %></td>
         <td><%= award.source %></td>
         <td><%= link_to 'Show', award %></td>
         <td><%= link_to 'Edit', edit_award_path(award) %></td>

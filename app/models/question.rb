@@ -5,6 +5,7 @@ class Question < ActiveRecord::Base
   has_many :question_answers
   has_many :answers, through: :question_answers
   belongs_to :answer
+  before_destroy :no_referenced_attempts
 
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|
@@ -94,6 +95,15 @@ class Question < ActiveRecord::Base
       when ".xlsx" then Roo::Excelx.new(file.path, nil, :ignore)
       else raise "Unknown file type: #{file.original_filename}"
     end
+  end
+
+  private
+
+  def no_referenced_attempts
+    return if attempts.empty?
+
+    errors.add :base, "This question is referenced by attempts(s): #{attempts.map(&:id).to_sentence}"
+    false # If you return anything else, the callback will not stop the destroy from happening
   end
 
 end

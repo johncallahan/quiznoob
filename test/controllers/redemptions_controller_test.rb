@@ -1,8 +1,10 @@
 require 'test_helper'
 
 class RedemptionsControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
+
   setup do
-    @redemption = redemptions(:one)
+    @redemption = redemptions(:getmoretime)
   end
 
   test "should get index" do
@@ -18,7 +20,7 @@ class RedemptionsControllerTest < ActionController::TestCase
 
   test "should create redemption" do
     assert_difference('Redemption.count') do
-      post :create, redemption: { hearts: @redemption.hearts, reward_id: @redemption.reward_id, user_id: @redemption.user_id }
+      post :create, redemption: { cost: @redemption.cost, reward_id: @redemption.reward_id, user_id: @redemption.user_id }
     end
 
     assert_redirected_to redemption_path(assigns(:redemption))
@@ -35,7 +37,7 @@ class RedemptionsControllerTest < ActionController::TestCase
   end
 
   test "should update redemption" do
-    patch :update, id: @redemption, redemption: { hearts: @redemption.hearts, reward_id: @redemption.reward_id, user_id: @redemption.user_id }
+    patch :update, id: @redemption, redemption: { cost: @redemption.cost, reward_id: @redemption.reward_id, user_id: @redemption.user_id }
     assert_redirected_to redemption_path(assigns(:redemption))
   end
 

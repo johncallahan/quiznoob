@@ -1,6 +1,8 @@
 require 'test_helper'
 
 class AwardsControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
+
   setup do
     @award = awards(:one)
   end
@@ -18,7 +20,7 @@ class AwardsControllerTest < ActionController::TestCase
 
   test "should create award" do
     assert_difference('Award.count') do
-      post :create, award: { hearts: @award.hearts, user_id: @award.user_id }
+      post :create, award: { source: @award.source }
     end
 
     assert_redirected_to award_path(assigns(:award))
@@ -35,7 +37,7 @@ class AwardsControllerTest < ActionController::TestCase
   end
 
   test "should update award" do
-    patch :update, id: @award, award: { hearts: @award.hearts, user_id: @award.user_id }
+    patch :update, id: @award, award: { source: @award.source }
     assert_redirected_to award_path(assigns(:award))
   end
 

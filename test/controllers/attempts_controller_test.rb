@@ -1,8 +1,10 @@
 require 'test_helper'
 
 class AttemptsControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
+
   setup do
-    @attempt = attempts(:one)
+    @attempt = attempts(:ninetimesnine_correct)
   end
 
   test "should get index" do
@@ -18,7 +20,7 @@ class AttemptsControllerTest < ActionController::TestCase
 
   test "should create attempt" do
     assert_difference('Attempt.count') do
-      post :create, attempt: { quiz_id: @attempt.quiz_id, user_id: @attempt.user_id }
+      post :create, attempt: { user_id: @attempt.user_id, quiz_id: @attempt.quiz_id, question_id: @attempt.question_id, answer_id: @attempt.answer_id  }
     end
 
     assert_redirected_to attempt_path(assigns(:attempt))
@@ -35,7 +37,7 @@ class AttemptsControllerTest < ActionController::TestCase
   end
 
   test "should update attempt" do
-    patch :update, id: @attempt, attempt: { quiz_id: @attempt.quiz_id, user_id: @attempt.user_id }
+    patch :update, id: @attempt, attempt: { user_id: @attempt.user_id, quiz_id: @attempt.quiz_id, question_id: @attempt.question_id, answer_id: @attempt.answer_id  }
     assert_redirected_to attempt_path(assigns(:attempt))
   end
 

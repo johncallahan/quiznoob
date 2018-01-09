@@ -28,24 +28,11 @@ ActiveRecord::Schema.define(version: 20180103013428) do
     t.datetime "updated_at"
   end
 
-  add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
-  add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
-
   create_table "answers", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
-
-  create_table "attempt_awards", force: :cascade do |t|
-    t.integer  "attempt_id", limit: 4
-    t.integer  "award_id",   limit: 4
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-  end
-
-  add_index "attempt_awards", ["attempt_id"], name: "index_attempt_awards_on_attempt_id", using: :btree
-  add_index "attempt_awards", ["award_id"], name: "index_attempt_awards_on_award_id", using: :btree
 
   create_table "attempts", force: :cascade do |t|
     t.integer  "user_id",     limit: 4
@@ -94,24 +81,14 @@ ActiveRecord::Schema.define(version: 20180103013428) do
 
   create_table "questions", force: :cascade do |t|
     t.string   "name",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.integer  "answer_id",  limit: 4
-    t.integer  "points",     limit: 4
+    t.integer  "points",     limit: 4,   default: 0
     t.string   "imageurl",   limit: 255
   end
 
   add_index "questions", ["answer_id"], name: "index_questions_on_answer_id", using: :btree
-
-  create_table "quiz_awards", force: :cascade do |t|
-    t.integer  "quiz_id",    limit: 4
-    t.integer  "award_id",   limit: 4
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-  end
-
-  add_index "quiz_awards", ["award_id"], name: "index_quiz_awards_on_award_id", using: :btree
-  add_index "quiz_awards", ["quiz_id"], name: "index_quiz_awards_on_quiz_id", using: :btree
 
   create_table "quiz_questions", force: :cascade do |t|
     t.integer  "quiz_id",     limit: 4
@@ -176,15 +153,13 @@ ActiveRecord::Schema.define(version: 20180103013428) do
     t.datetime "updated_at",                                  null: false
     t.datetime "lastlogin"
     t.integer  "utcoffset",       limit: 4
-    t.integer  "hearts",          limit: 4
+    t.integer  "hearts",          limit: 4,   default: 0
     t.string   "account",         limit: 255
   end
 
   add_index "users", ["access_token"], name: "index_users_on_access_token", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", using: :btree
 
-  add_foreign_key "attempt_awards", "attempts"
-  add_foreign_key "attempt_awards", "awards"
   add_foreign_key "attempts", "answers"
   add_foreign_key "attempts", "questions"
   add_foreign_key "attempts", "quizzes"
@@ -194,8 +169,6 @@ ActiveRecord::Schema.define(version: 20180103013428) do
   add_foreign_key "question_answers", "answers"
   add_foreign_key "question_answers", "questions"
   add_foreign_key "questions", "answers"
-  add_foreign_key "quiz_awards", "awards"
-  add_foreign_key "quiz_awards", "quizzes"
   add_foreign_key "quiz_questions", "questions"
   add_foreign_key "quiz_questions", "quizzes"
   add_foreign_key "quizzes", "subjects"

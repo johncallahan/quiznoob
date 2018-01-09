@@ -1,11 +1,8 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  description: MyString
-  hearts: 1
-
-two:
-  name: MyString
-  description: MyString
-  hearts: 1
+moretime:
+  name: MoreTime
+  description: MoreTimeForMe
+  cost: 1
+  event: foobar
+  enabled: true

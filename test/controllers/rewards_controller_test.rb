@@ -1,8 +1,10 @@
 require 'test_helper'
 
 class RewardsControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
+
   setup do
-    @reward = rewards(:one)
+    @reward = rewards(:moretime)
   end
 
   test "should get index" do
@@ -18,7 +20,7 @@ class RewardsControllerTest < ActionController::TestCase
 
   test "should create reward" do
     assert_difference('Reward.count') do
-      post :create, reward: { description: @reward.description, hearts: @reward.hearts, name: @reward.name }
+      post :create, reward: { description: @reward.description, cost: @reward.cost, name: @reward.name }
     end
 
     assert_redirected_to reward_path(assigns(:reward))
@@ -35,11 +37,17 @@ class RewardsControllerTest < ActionController::TestCase
   end
 
   test "should update reward" do
-    patch :update, id: @reward, reward: { description: @reward.description, hearts: @reward.hearts, name: @reward.name }
+    patch :update, id: @reward, reward: { description: @reward.description, cost: @reward.cost, name: @reward.name }
     assert_redirected_to reward_path(assigns(:reward))
   end
 
+  test "should not destroy reward" do
+    delete :destroy, id: @reward
+    assert_response 409
+  end
+
   test "should destroy reward" do
+    @reward.redemptions.destroy_all
     assert_difference('Reward.count', -1) do
       delete :destroy, id: @reward
     end

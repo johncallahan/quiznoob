@@ -4,6 +4,7 @@ class Quiz < ActiveRecord::Base
   has_many :quiz_questions
   has_many :questions, through: :quiz_questions
   belongs_to :subject
+  before_destroy :no_referenced_attempts
 
   def unattempted(user)
     return questions.joins("LEFT OUTER JOIN attempts ON attempts.question_id = questions.id AND attempts.user_id = " + user.id.to_s + " AND attempts.created_at > '" + DateTime.now.in_time_zone("EST").beginning_of_day.in_time_zone(Time.zone).strftime("%Y-%m-%d %H:%M:%S") + "'").where(attempts: { id: nil }).sample(10).map{|x| x.id}
@@ -42,6 +43,15 @@ class Quiz < ActiveRecord::Base
       when ".xlsx" then Roo::Excelx.new(file.path, nil, :ignore)
       else raise "Unknown file type: #{file.original_filename}"
     end
+  end
+
+  private
+
+  def no_referenced_attempts
+    return if attempts.empty?
+
+    errors.add :base, "This quiz is referenced by attempts(s): #{attempts.map(&:id).to_sentence}"
+    false # If you return anything else, the callback will not stop the destroy from happening
   end
 
 end

@@ -54,10 +54,13 @@ class SubjectsController < ApplicationController
   # DELETE /subjects/1
   # DELETE /subjects/1.json
   def destroy
-    @subject.destroy
-    respond_to do |format|
-      format.html { redirect_to subjects_url, notice: 'Subject was successfully destroyed.' }
-      format.json { head :no_content }
+    if @subject.destroy
+      respond_to do |format|
+        format.html { redirect_to subjects_url, notice: 'Subject was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    else
+      render :action => :edit, :status => 409
     end
   end
 

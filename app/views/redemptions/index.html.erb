@@ -15,8 +15,8 @@
   <tbody>
     <% @redemptions.each do |redemption| %>
       <tr>
-        <td><%= redemption.user.name %></td>
-        <td><%= redemption.reward.name %></td>
+        <td><%= redemption.user.nil? ? "" : redemption.user.name %></td>
+        <td><%= redemption.reward.nil? ? "" : redemption.reward.name %></td>
         <td><%= redemption.cost %></td>
         <td><%= distance_of_time_in_words(DateTime.now,redemption.created_at) %> ago</td>
         <td><%= link_to 'Show', redemption %></td>
