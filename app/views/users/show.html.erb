@@ -1,5 +1,44 @@
 <h1 style='text-align: center;'><%= @user.name %></h1>
-<div class="col-md-6 col-md-offset-3">
+<div class="row">
+<div class="col-md-5 col-md-offset-1">
+<table class="table table-striped">
+<tr><td>Daily</td><td>
+<%= number_to_percentage(Attempt.where(:user_id => @user.id, :created_at => Time.now.beginning_of_day..Time.now.end_of_day).inject([0.0,0]) do |r,ele|
+    [ r[0]+(ele.result ? 1 : 0), r[1]+1 ]
+end.inject(:/)*100, precision: 1) %>
+</td></tr>
+<tr><td>Weekly</td><td>
+<%= number_to_percentage(Attempt.where(:user_id => @user.id, :created_at => Time.now.beginning_of_week..Time.now.end_of_week).inject([0.0,0]) do |r,ele|
+    [ r[0]+(ele.result ? 1 : 0), r[1]+1 ]
+end.inject(:/)*100, precision: 1) %>
+</td></tr>
+<tr><td>Monthly</td><td>
+<%= number_to_percentage(Attempt.where(:user_id => @user.id, :created_at => Time.now.beginning_of_month..Time.now.end_of_month).inject([0.0,0]) do |r,ele|
+    [ r[0]+(ele.result ? 1 : 0), r[1]+1 ]
+end.inject(:/)*100, precision: 1) %>
+</td></tr>
+<tr><td>YTD</td><td>
+<%= number_to_percentage(Attempt.where(:user_id => @user.id, :created_at => Time.now.beginning_of_year..Time.now.end_of_year).inject([0.0,0]) do |r,ele|
+    [ r[0]+(ele.result ? 1 : 0), r[1]+1 ]
+end.inject(:/)*100, precision: 1) %>
+</td></tr>
+</table>
+<table class="table table-striped">
+<tr><td>Today</td><td>
+<%= Redemption.where(:user_id => @user.id, :created_at => Time.now.beginning_of_day..Time.now.end_of_day).count %>
+</td></tr>
+<tr><td>Past 7 days</td><td>
+<%= Redemption.where(:user_id => @user.id, :created_at => (Time.now - 7.days).beginning_of_day..Time.now.end_of_day).count %>
+</td></tr>
+<tr><td>Past month</td><td>
+<%= Redemption.where(:user_id => @user.id, :created_at => (Time.now - 30.days).beginning_of_day..Time.now.end_of_day).count %>
+</td></tr>
+<tr><td>YTD</td><td>
+<%= Redemption.where(:user_id => @user.id, :created_at => Time.now.beginning_of_year..Time.now.end_of_year).count %>
+</td></tr>
+</table>
+</div>
+<div class="col-md-5">
 <table>
 <tr>
 <td><%= button_to 'Edit', edit_user_path(@user), method: :get %></td>
@@ -21,9 +60,10 @@
         <tr>
           <td><%= r.reward.name %></td>
           <td><%= r.cost %></td>
-          <td><%= distance_of_time_in_words(DateTime.now,r.created_at) %></td>
+          <td><%= distance_of_time_in_words(DateTime.now,r.created_at) %> ago</td>
         </tr>
       <% end %>
     </tbody>
   </table>
+</div>
 </div>
