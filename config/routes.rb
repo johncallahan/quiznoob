@@ -30,7 +30,11 @@ Rails.application.routes.draw do
     post   'login'   => 'sessions#create'
     delete 'logout'  => 'sessions#destroy'
     get    'verify'  => 'sessions#verify_access_token'
-    resources :users
+    resources :users do
+      member do
+        get 'reset'
+      end
+    end
     resources :password_resets, only: [:new, :create, :edit, :update]
   end
 

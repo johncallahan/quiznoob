@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :reset]
 #  before_action :logged_in_user, only: [:edit, :update]
 #  before_action :correct_user,   only: [:edit, :update]
   #respond_to :json, :html
@@ -56,6 +56,12 @@ class UsersController < ApplicationController
         flash[:success] = 'Account was successfully destroyed.'
         redirect_to root_url
       end
+  end
+
+  def reset
+    Attempt.where(:user_id => @user.id, :created_at => Time.now.beginning_of_day..Time.now).delete_all
+    flash[:success] = 'Daily attempts were reset successfully.'
+    redirect_to @user
   end
 
   private

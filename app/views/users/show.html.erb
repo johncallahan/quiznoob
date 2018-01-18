@@ -2,28 +2,30 @@
 <div class="row">
 <div class="col-md-5 col-md-offset-1">
 <table class="table table-striped">
+<caption>Attempts</caption>
 <tr><td>Daily</td><td>
 <%= number_to_percentage(Attempt.where(:user_id => @user.id, :created_at => Time.now.beginning_of_day..Time.now.end_of_day).inject([0.0,0]) do |r,ele|
     [ r[0]+(ele.result ? 1 : 0), r[1]+1 ]
-end.inject(:/)*100, precision: 1) %>
+end.inject(:/)*100, precision: 1) %>&nbsp;&nbsp;(<%= Attempt.where(:user_id => @user.id, :created_at => Time.now.beginning_of_day..Time.now.end_of_day).inject(0){|sum,a| sum += a.result ? 1 : 0} %> / <%= Attempt.where(:user_id => @user.id, :created_at => Time.now.beginning_of_day..Time.now.end_of_day).count %>)
 </td></tr>
 <tr><td>Weekly</td><td>
 <%= number_to_percentage(Attempt.where(:user_id => @user.id, :created_at => Time.now.beginning_of_week..Time.now.end_of_week).inject([0.0,0]) do |r,ele|
     [ r[0]+(ele.result ? 1 : 0), r[1]+1 ]
-end.inject(:/)*100, precision: 1) %>
+end.inject(:/)*100, precision: 1) %>&nbsp;&nbsp;(<%= Attempt.where(:user_id => @user.id, :created_at => Time.now.beginning_of_week..Time.now.end_of_week).inject(0){|sum,a| sum += a.result ? 1 : 0} %> / <%= Attempt.where(:user_id => @user.id, :created_at => Time.now.beginning_of_week..Time.now.end_of_week).count %>)
 </td></tr>
 <tr><td>Monthly</td><td>
 <%= number_to_percentage(Attempt.where(:user_id => @user.id, :created_at => Time.now.beginning_of_month..Time.now.end_of_month).inject([0.0,0]) do |r,ele|
     [ r[0]+(ele.result ? 1 : 0), r[1]+1 ]
-end.inject(:/)*100, precision: 1) %>
+end.inject(:/)*100, precision: 1) %>&nbsp;&nbsp;(<%= Attempt.where(:user_id => @user.id, :created_at => Time.now.beginning_of_month..Time.now.end_of_month).inject(0){|sum,a| sum += a.result ? 1 : 0} %> / <%= Attempt.where(:user_id => @user.id, :created_at => Time.now.beginning_of_month..Time.now.end_of_month).count %>)
 </td></tr>
 <tr><td>YTD</td><td>
 <%= number_to_percentage(Attempt.where(:user_id => @user.id, :created_at => Time.now.beginning_of_year..Time.now.end_of_year).inject([0.0,0]) do |r,ele|
     [ r[0]+(ele.result ? 1 : 0), r[1]+1 ]
-end.inject(:/)*100, precision: 1) %>
+end.inject(:/)*100, precision: 1) %>&nbsp;&nbsp;(<%= Attempt.where(:user_id => @user.id, :created_at => Time.now.beginning_of_year..Time.now.end_of_year).inject(0){|sum,a| sum += a.result ? 1 : 0} %> / <%= Attempt.where(:user_id => @user.id, :created_at => Time.now.beginning_of_year..Time.now.end_of_year).count %>)
 </td></tr>
 </table>
 <table class="table table-striped">
+<caption>Redemption Summary</caption>
 <tr><td>Today</td><td>
 <%= Redemption.where(:user_id => @user.id, :created_at => Time.now.beginning_of_day..Time.now.end_of_day).count %>
 </td></tr>
@@ -45,9 +47,14 @@ end.inject(:/)*100, precision: 1) %>
 <td>&nbsp;</td>
 <td><%= button_to 'Back', users_path, method: :get  %></td>
 <td>&nbsp;</td>
+<td><%= button_to 'Reset', reset_user_path, method: :get  %></td>
+<td>&nbsp;</td>
 </tr>
 </table>
+<br/>
+<br/>
 <table class="table table-striped">
+<caption>Redemptions</caption>
     <thead>
       <tr>
         <th>Name</th>
