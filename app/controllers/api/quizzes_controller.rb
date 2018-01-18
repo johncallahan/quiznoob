@@ -11,7 +11,7 @@ class QuizzesController < ApplicationController
       @equizzes = []
       if params[:subject]
         if Subject.find_by_name(params[:subject])
-          @quizzes = Subject.find_by_name(params[:subject]).quizzes
+          @quizzes = Subject.find_by_name(params[:subject]).quizzes.where(:enabled => true)
 	else
 	  @quizzes = []
 	end

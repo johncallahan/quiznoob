@@ -12,9 +12,9 @@ class Quiz < ActiveRecord::Base
 
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|
-      csv << ["quiz","description","bonus","subject"]
+      csv << ["enabled","quiz","description","bonus","subject"]
       all.each do |quiz|
-        csv << [quiz.name, quiz.description, quiz.points, quiz.subject.name]
+        csv << [quiz.enabled,quiz.name, quiz.description, quiz.points, quiz.subject.name]
       end
     end
   end
@@ -27,6 +27,7 @@ class Quiz < ActiveRecord::Base
       subject = Subject.find_by(name: row["subject"]) || Subject.new
       subject.name = row["subject"]
       quiz = find_by(name: row["quiz"]) || new
+      quiz.enabled = row["enabled"]
       quiz.name = row["quiz"]
       quiz.description = row["description"]
       quiz.points = row["bonus"].to_i

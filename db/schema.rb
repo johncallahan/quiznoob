@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180103013428) do
+ActiveRecord::Schema.define(version: 20180118074937) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
@@ -108,6 +108,7 @@ ActiveRecord::Schema.define(version: 20180103013428) do
     t.string   "iconname",    limit: 255
     t.integer  "subject_id",  limit: 4
     t.integer  "points",      limit: 4,   default: 0
+    t.boolean  "enabled"
   end
 
   add_index "quizzes", ["subject_id"], name: "index_quizzes_on_subject_id", using: :btree

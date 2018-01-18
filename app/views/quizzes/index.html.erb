@@ -17,6 +17,7 @@
 <table class="table table-striped">
   <thead>
     <tr>
+      <th>Enabled</th>
       <th>Name</th>
       <th>Subject</th>
       <th>Bonus</th>
@@ -27,6 +28,7 @@
   <tbody>
     <% @quizzes.each do |quiz| %>
       <tr>
+        <td><%= quiz.enabled %></td>
         <td><%= quiz.name %></td>
         <td><%= quiz.subject.nil? ? "" : quiz.subject.name %></td>
         <td><%= quiz.points %></td>
