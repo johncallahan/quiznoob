@@ -19,6 +19,7 @@
     <tr>
       <th>Enabled</th>
       <th>Name</th>
+      <th>Sample</th>
       <th>Subject</th>
       <th>Bonus</th>
       <th colspan="3"></th>
@@ -30,6 +31,7 @@
       <tr>
         <td><%= quiz.enabled %></td>
         <td><%= quiz.name %></td>
+        <td><%= quiz.sample %></td>
         <td><%= quiz.subject.nil? ? "" : quiz.subject.name %></td>
         <td><%= quiz.points %></td>
         <td><%= link_to 'Show', quiz %></td>

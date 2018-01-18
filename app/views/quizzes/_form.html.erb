@@ -32,6 +32,10 @@
     <%= f.collection_select :subject_id, Subject.all, :id, :name %>
   </div>
   <div class="field">
+    <%= f.label :sample %><br>
+    <%= f.number_field :sample %>
+  </div>
+  <div class="field">
     <%= f.label :question_ids %>
     <%= f.select :question_ids, Question.all.collect {|x| [x.name, x.id]}, {}, :multiple => true %>
   </div>

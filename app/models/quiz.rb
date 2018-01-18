@@ -7,14 +7,14 @@ class Quiz < ActiveRecord::Base
   before_destroy :no_referenced_attempts
 
   def unattempted(user)
-    return questions.joins("LEFT OUTER JOIN attempts ON attempts.question_id = questions.id AND attempts.user_id = " + user.id.to_s + " AND attempts.created_at > '" + DateTime.now.in_time_zone("EST").beginning_of_day.in_time_zone(Time.zone).strftime("%Y-%m-%d %H:%M:%S") + "'").where(attempts: { id: nil }).sample(10).map{|x| x.id}
+    return questions.joins("LEFT OUTER JOIN attempts ON attempts.question_id = questions.id AND attempts.user_id = " + user.id.to_s + " AND attempts.created_at > '" + DateTime.now.in_time_zone("EST").beginning_of_day.in_time_zone(Time.zone).strftime("%Y-%m-%d %H:%M:%S") + "'").where(attempts: { id: nil }).sample(sample).map{|x| x.id}
   end
 
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|
-      csv << ["enabled","quiz","description","bonus","subject"]
+      csv << ["enabled","quiz","sample","description","bonus","subject"]
       all.each do |quiz|
-        csv << [quiz.enabled,quiz.name, quiz.description, quiz.points, quiz.subject.name]
+        csv << [quiz.enabled, quiz.name, quiz.sample, quiz.description, quiz.points, quiz.subject.name]
       end
     end
   end
@@ -28,6 +28,7 @@ class Quiz < ActiveRecord::Base
       subject.name = row["subject"]
       quiz = find_by(name: row["quiz"]) || new
       quiz.enabled = row["enabled"]
+      quiz.sample = row["sample"]
       quiz.name = row["quiz"]
       quiz.description = row["description"]
       quiz.points = row["bonus"].to_i
