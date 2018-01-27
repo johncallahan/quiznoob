@@ -1,10 +1,10 @@
 test:
-  adapter: mysql2
+  adapter: mysql
   database: quiznoob_test
   username: root
   encoding: utf8
 cucumber:
-  adapter: mysql2
+  adapter: mysql
   database: quiznoob_test
   username: root
   encoding: utf8
