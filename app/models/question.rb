@@ -24,7 +24,9 @@ class Question < ActiveRecord::Base
     (2..spreadsheet.last_row).each do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
 
-      quiz = Quiz.find_by(name: row["quiz"])
+      quiz = Quiz.find_by(name: row["quiz"]) || Quiz.new
+      quiz.name = row["quiz"]
+      quiz.save!
 
       answer = Answer.find_by(name: row["answer"]) || Answer.new
       answer.name = row["answer"]
