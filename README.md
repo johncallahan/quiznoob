@@ -1,4 +1,4 @@
-# Rails-React-Auth
+# quiznoob
 
 [![Build Status](https://travis-ci.org/johncallahan/quiznoob.svg?branch=master)](https://travis-ci.org/johncallahan/quiznoob)
 
