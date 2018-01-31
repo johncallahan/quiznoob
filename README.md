@@ -8,7 +8,7 @@ Earn more Internet time on Circle
 * A Circle device by Disney
 * An IFTTT (if-THIS-then-THAT) account
 
-Kids earn :hearts: (hearts) for answering quiz questions they can redeem for
+Kids earn :hearts: (hearts) for answering quiz questions they can redeem for extra Internet time via Circle's [integration with IFTTT](https://medium.com/building-circle/ask-alexa-about-your-circle-and-pause-ae3fdbba9a50).
 
 # Setup
 
