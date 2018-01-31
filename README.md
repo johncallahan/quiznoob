@@ -1,7 +1,7 @@
 [quiznoob](https://github.com/johncallahan/quiznoob-flutter) is an app that kids can use to earn more Internet time by answering quiz questions.  You must have:
 
-* A Circle device by Disney <img src="{{ site.url }}/assets/circle-with-disney-green.png" height="25px"/>
-* An IFTTT (if-THIS-then-THAT) account <img src="{{ site.url }}/assets/IFTTT_Logo.png" height="25px"/>
+* A [Circle](https://meetcircle.com/) device by Disney <img src="{{ site.url }}/assets/circle-with-disney-green.png" height="25px"/>
+* An [IFTTT](https://ifttt.com/discover) (if-THIS-then-THAT) account <img src="{{ site.url }}/assets/IFTTT_Logo.png" height="25px"/>
 
 Kids earn :hearts: (hearts) for answering quiz questions they can redeem for extra Internet time via Circle's [integration with IFTTT](https://medium.com/building-circle/ask-alexa-about-your-circle-and-pause-ae3fdbba9a50).
 
