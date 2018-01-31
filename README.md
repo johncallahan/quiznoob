@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.org/johncallahan/quiznoob.svg?branch=master)](https://travis-ci.org/johncallahan/quiznoob)
-
 [quiznoob](https://github.com/johncallahan/quiznoob-flutter) is an app that kids can use to earn more Internet time by answering quiz questions.  You must have:
 
 * A Circle device by Disney
@@ -21,3 +19,5 @@ Kids earn :hearts: (hearts) for answering quiz questions they can redeem for ext
 
 * Run project `rails server`
 * Navigate to `localhost:3000` to see it working!
+
+[![Build Status](https://travis-ci.org/johncallahan/quiznoob.svg?branch=master)](https://travis-ci.org/johncallahan/quiznoob)
