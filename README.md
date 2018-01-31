@@ -1,4 +1,5 @@
-# quiznoob
+Earn more Internet time on Circle
+=================================
 
 [![Build Status](https://travis-ci.org/johncallahan/quiznoob.svg?branch=master)](https://travis-ci.org/johncallahan/quiznoob)
 
@@ -7,7 +8,7 @@
 * A Circle device by Disney
 * An IFTTT (if-THIS-then-THAT) account
 
-Kids earn :hearts: (hearts) for answering quiz questions they can redeem for 
+Kids earn :hearts: (hearts) for answering quiz questions they can redeem for
 
 # Setup
 
