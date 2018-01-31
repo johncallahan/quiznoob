@@ -1,4 +1,6 @@
 theme: jekyll-theme-minimal
+title: quiznoob
+description: Answer quiz questions, earn Circle rewards
 gems:
   - jekyll-readme-index
   - jemoji
