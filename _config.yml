@@ -1,6 +1,6 @@
 theme: jekyll-theme-minimal
 title: quiznoob
-description: Answer quiz questions, earn Circle rewards
+description: 
 show_downloads: true
 gems:
   - jekyll-readme-index
