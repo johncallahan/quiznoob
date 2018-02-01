@@ -11,7 +11,7 @@ Kids earn :hearts: (hearts) for answering quiz questions they can redeem for ext
 
 # Mobile app
 
-* Click [here](https://github.com/johncallahan/quiznoob-flutter) for the client app source code or install it (coming soon):  <img src="{{ site.url }}/assets/istore-badge-en.svg" height="50px"/> <img src="{{ site.url }}/assets/google-play-badge-en.svg" height="50px"/>
+* [Click here for the client app source code](https://github.com/johncallahan/quiznoob-flutter) or install it (coming soon):  <img src="{{ site.url }}/assets/istore-badge-en.svg" height="50px"/> <img src="{{ site.url }}/assets/google-play-badge-en.svg" height="50px"/>
 
 # Contact
 
