@@ -13,7 +13,7 @@ Kids earn :hearts: (hearts) for answering quiz questions they can redeem for ext
 
 * The [quiznoob client app for iOS and Android](https://github.com/johncallahan/quiznoob-flutter) is built with flutter.
 
-<img src="{{ site.url }}/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg"/> <img src="{{ site.url }}/assets/google-play-badge.png"/>
+<img src="{{ site.url }}/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" height="50px"/> <img src="{{ site.url }}/assets/google-play-badge.png" height="50px"/>
 
 # Contact
 
