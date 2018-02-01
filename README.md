@@ -7,7 +7,11 @@ Kids earn :hearts: (hearts) for answering quiz questions they can redeem for ext
 
 # Installation
 
-See [this Medium article about quiznoob](#)!
+* See [this Medium article about quiznoob](#)!
+
+# Mobile app
+
+* The [quiznoob client app for iOS and Android](https://github.com/johncallahan/quiznoob-flutter) is built with flutter.
 
 # Contact
 
