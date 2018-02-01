@@ -21,3 +21,5 @@ Kids earn :hearts: (hearts) for answering quiz questions they can redeem for ext
 * Navigate to `localhost:3000` to see it working!
 
 [![Build Status](https://travis-ci.org/johncallahan/quiznoob.svg?branch=master)](https://travis-ci.org/johncallahan/quiznoob)
+
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
