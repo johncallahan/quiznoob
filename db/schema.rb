@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180118102718) do
+ActiveRecord::Schema.define(version: 20180203214533) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
@@ -59,6 +59,16 @@ ActiveRecord::Schema.define(version: 20180118102718) do
 
   add_index "awards", ["source_type", "source_id"], name: "index_awards_on_source_type_and_source_id", using: :btree
 
+  create_table "badges", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.integer  "subject_id", limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.string   "ancestry",   limit: 255
+  end
+
+  add_index "badges", ["ancestry"], name: "index_badges_on_ancestry", using: :btree
+
   create_table "bonuses", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
     t.integer  "quiz_id",    limit: 4
@@ -68,6 +78,13 @@ ActiveRecord::Schema.define(version: 20180118102718) do
 
   add_index "bonuses", ["quiz_id"], name: "index_bonuses_on_quiz_id", using: :btree
   add_index "bonuses", ["user_id"], name: "index_bonuses_on_user_id", using: :btree
+
+  create_table "prerequisites", force: :cascade do |t|
+    t.integer  "badge_id",   limit: 4
+    t.integer  "quiz_id",    limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
 
   create_table "question_answers", force: :cascade do |t|
     t.integer  "question_id", limit: 4
@@ -110,8 +127,10 @@ ActiveRecord::Schema.define(version: 20180118102718) do
     t.integer  "points",      limit: 4,   default: 0
     t.boolean  "enabled"
     t.integer  "sample",      limit: 4,   default: 10, null: false
+    t.string   "ancestry",    limit: 255
   end
 
+  add_index "quizzes", ["ancestry"], name: "index_quizzes_on_ancestry", using: :btree
   add_index "quizzes", ["subject_id"], name: "index_quizzes_on_subject_id", using: :btree
 
   create_table "redemptions", force: :cascade do |t|
@@ -124,6 +143,13 @@ ActiveRecord::Schema.define(version: 20180118102718) do
 
   add_index "redemptions", ["reward_id"], name: "index_redemptions_on_reward_id", using: :btree
   add_index "redemptions", ["user_id"], name: "index_redemptions_on_user_id", using: :btree
+
+  create_table "requirements", force: :cascade do |t|
+    t.integer  "badge_id",   limit: 4
+    t.integer  "quiz_id",    limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
 
   create_table "rewards", force: :cascade do |t|
     t.string   "name",        limit: 255

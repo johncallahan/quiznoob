@@ -4,6 +4,8 @@ gem 'github-pages', group: :jekyll_plugins
 gem "jekyll-readme-index", group: :jekyll_plugins
 gem 'jemoji', group: :jekyll_plugins
 
+gem 'ancestry'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 4.2.7.1'
 # Use mysql as the database for Active Record
