@@ -15,14 +15,17 @@ Rails.application.routes.draw do
     resources :questions do
       collection do
         post :import
-	post :export
+	      post :export
       end
     end
     resources :attempts
     resources :quizzes do
+      member do
+        post :toggle
+      end
       collection do
         post :import
-	post :export
+	      post :export
       end
     end
     get    'signup'  => 'users#new'

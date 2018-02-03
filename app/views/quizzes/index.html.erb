@@ -29,7 +29,7 @@
   <tbody>
     <% @quizzes.each do |quiz| %>
       <tr>
-        <td><%= quiz.enabled %></td>
+        <td><%= check_box_tag 'enabled', quiz.id, quiz.enabled, data: { remote: true, url: url_for(action: :toggle, id: quiz.id), method: "POST" } %></td>
         <td><%= quiz.name %></td>
         <td><%= quiz.sample %></td>
         <td><%= quiz.subject.nil? ? "" : quiz.subject.name %></td>

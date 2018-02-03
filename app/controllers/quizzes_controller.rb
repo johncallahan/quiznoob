@@ -64,6 +64,12 @@ class QuizzesController < ApplicationController
     end
   end
 
+  def toggle
+    @quiz = Quiz.find(params[:id])
+    @quiz.enabled = !@quiz.enabled
+    @quiz.save!
+  end
+
   def import
     Quiz.import(params[:file])
     redirect_to quizzes_url, notice: 'Quizzes imported.'
