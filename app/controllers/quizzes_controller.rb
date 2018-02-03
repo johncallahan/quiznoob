@@ -70,6 +70,12 @@ class QuizzesController < ApplicationController
     @quiz.save!
   end
 
+  def update_subject
+    @quiz = Quiz.find(params[:id])
+    @quiz.subject = Subject.find(params[:subject])
+    @quiz.save!
+  end
+
   def import
     Quiz.import(params[:file])
     redirect_to quizzes_url, notice: 'Quizzes imported.'

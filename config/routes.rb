@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     resources :quizzes do
       member do
         post :toggle
+        post :update_subject
       end
       collection do
         post :import
