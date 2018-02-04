@@ -7,7 +7,7 @@ Kids earn :hearts: (hearts) for answering quiz questions they can redeem for ext
 
 # Installation
 
-* See [this Medium article](#) and [this Youtube video](#) about quiznoob!
+* See [this Medium article](https://medium.com/@johnrcallahan/quiznoob-earn-while-you-learn-a31efb110a84) and [this Youtube video](#) about quiznoob!
 
 # Mobile app
 
