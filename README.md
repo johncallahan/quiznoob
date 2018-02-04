@@ -17,4 +17,4 @@ Kids earn :hearts: (hearts) for answering quiz questions they can redeem for ext
 
 * [Signup for development information about quiznoob](http://eepurl.com/djo9nD)!
 
-[![Build Status](https://travis-ci.org/johncallahan/quiznoob.svg?branch=master)](https://travis-ci.org/johncallahan/quiznoob) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+[![Build Status](https://travis-ci.org/johncallahan/quiznoob.svg?branch=master)](https://travis-ci.org/johncallahan/quiznoob) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy) (deploy to Heroku only from [github page](https://github.com/johncallahan/quiznoob))
