@@ -26,6 +26,7 @@ class Question < ActiveRecord::Base
 
       quiz = Quiz.find_by(name: row["quiz"]) || Quiz.new
       quiz.name = row["quiz"]
+      quiz.description = quiz.description.nil? ? "fill in a description" : quiz.description
       quiz.save!
 
       answer = Answer.find_by(name: row["answer"]) || Answer.new
