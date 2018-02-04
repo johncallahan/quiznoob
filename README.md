@@ -8,6 +8,7 @@ Kids earn :hearts: (hearts) for answering quiz questions they can redeem for ext
 # Installation
 
 * See [this Medium article](https://medium.com/@johnrcallahan/quiznoob-earn-while-you-learn-a31efb110a84) and [this Youtube video](#) about quiznoob!
+*  [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy) (deploy to Heroku only from [github page](https://github.com/johncallahan/quiznoob))
 
 # Mobile app
 
@@ -17,4 +18,4 @@ Kids earn :hearts: (hearts) for answering quiz questions they can redeem for ext
 
 * [Signup for development information about quiznoob](http://eepurl.com/djo9nD)!
 
-[![Build Status](https://travis-ci.org/johncallahan/quiznoob.svg?branch=master)](https://travis-ci.org/johncallahan/quiznoob) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy) (deploy to Heroku only from [github page](https://github.com/johncallahan/quiznoob))
+[![Build Status](https://travis-ci.org/johncallahan/quiznoob.svg?branch=master)](https://travis-ci.org/johncallahan/quiznoob) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
