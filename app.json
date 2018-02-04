@@ -9,10 +9,7 @@
   "repository": "https://github.com/johncallahan/quiznoob",
   "success_url": "/",
   "scripts": {
-    "postdeploy": [
-      "bundle exec rake db:migrate",
-      "bundle exec rake db:seed"
-    ]
+    "postdeploy": "bundle exec rake db:migrate db:seed"
   },
   "addons": [
     "heroku-postgresql"
