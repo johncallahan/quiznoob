@@ -1,0 +1,14 @@
+{
+  "name": "quiznoob",
+  "description": "Server-side support for quiznoob app",
+  "keywords": [
+    "rails",
+    "postgres"
+  ],
+  "website": "http://quiznoob.com",
+  "repository": "https://github.com/johncallahan/quiznoob",
+  "success_url": "/",
+  "addons": [
+    "heroku-postgresql"
+  ]
+}
