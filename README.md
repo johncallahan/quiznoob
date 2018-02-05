@@ -8,7 +8,7 @@ Kids earn :hearts: (hearts) for answering quiz questions they can redeem for ext
 
 # Quick Start
 
-*  [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy) (deploy to Heroku only from [github page](https://github.com/johncallahan/quiznoob))
+*  [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 # Installation
 
