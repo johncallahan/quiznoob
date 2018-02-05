@@ -46,6 +46,6 @@ You may have issues with your provisioning profile in which case you’ll need t
 
 * [Signup for development information about quiznoob](http://eepurl.com/djo9nD)!
 
-# Licenses
+# Badges & License
 
 [![Build Status](https://travis-ci.org/johncallahan/quiznoob.svg?branch=master)](https://travis-ci.org/johncallahan/quiznoob) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
