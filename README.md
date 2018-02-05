@@ -5,10 +5,12 @@
 
 Kids earn :hearts: (hearts) for answering quiz questions they can redeem for extra Internet time via Circle's [integration with IFTTT](https://medium.com/building-circle/ask-alexa-about-your-circle-and-pause-ae3fdbba9a50).
 
-# Installation
+# Overview & Quick Start
 
 * See [this Medium article](https://medium.com/@johnrcallahan/quiznoob-earn-while-you-learn-a31efb110a84) and [this Youtube video](#) about quiznoob!
 *  [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy) (deploy to Heroku only from [github page](https://github.com/johncallahan/quiznoob))
+
+# Installation
 
 To install the server on your local machine first as a test, make sure you have ruby 2.2, Rails4 and MySQL (the default database) installed, then:
 
