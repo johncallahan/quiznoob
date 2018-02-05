@@ -20,19 +20,10 @@ To install the server on your local machine first as a test, make sure you have 
 % bundle install
 % bundle exec rake db:create
 % bundle exec rake db:migrate
+% bundle exec rake db:seed
 ```
 
-Create an administrative user:
-
-```
-% rails c
-> a = Admin.create(email: "me@example.com", password: "NOTTHIS")
-> a.save!
-> quit
-% rails s 
-```
-
-After the server starts, visit http://localhost:3000/ and login with the admin email and password you just created.  Click the “New User” button to create a user. The access token will be needed on the child’s quiznoob mobile app. Next, you will need to upload some quiz materials. There are some quizzes in the data directory of the github project as Excel files (data/qn_mathematics_9x.xlsx). Click on the “Questions” tab, select “Choose file” and click the “Import” button.
+After the server starts, visit http://localhost:3000/ and login with the admin@example.com and password 'adminpassword'.  Click the “New User” button to create a user. The access token will be needed on the child’s quiznoob mobile app. Next, you will need to upload some quiz materials. There are some quizzes in the data directory of the github project as Excel files (data/qn_mathematics_9x.xlsx). Click on the “Questions” tab, select “Choose file” and click the “Import” button.
 
 Although a quiz was automatically created when you imported the questions, you must create and assign the quiz to a subject. Click on the “Subjects” tab and then the “New Subject” button. Create a subject like “Mathematics” with a description and click the “Create Subject” button.  Finally, navigate to the Quiz tab, enable the “Multiply by 9” quiz and assign it to the “Mathematics” subject in the pull-down list.  This is the miminal setup needed for the mobile app to connect and operate. Later, we’ll configure rewards and integrate with IFTTT and Circle.
 
