@@ -6,7 +6,9 @@ class AttemptsController < ApplicationController
   # GET /attempts.json
   def index
     Time.zone = "EST"
-    @attempts = Attempt.all.order(id: :desc)
+    @attempts = Attempt.all.order(id: :desc).page(params[:page])
+    @startpage = (params[:page] || "1").to_i
+    @basecount = (@startpage - 1) * Attempt.default_per_page
   end
 
   # GET /attempts/1

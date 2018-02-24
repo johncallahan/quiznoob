@@ -3,14 +3,24 @@
 <table class="table table-striped">
   <thead>
     <tr>
+      <th colspan=3><%= paginate @answers %></th>
+    </tr>
+    <tr>
+      <th></th>
       <th>Name</th>
       <th colspan="3"></th>
     </tr>
   </thead>
+  <tfoot>
+    <tr>
+      <td><%= paginate @answers %></td>
+    </tr>
+  </tfoot>
 
   <tbody>
-    <% @answers.each do |answer| %>
+    <% @answers.each_with_index do |answer,index| %>
       <tr>
+        <td><%= @basecount+index+1 %></td>
         <td><%= answer.name %></td>
         <td><%= link_to 'Show', answer %></td>
         <td><%= link_to 'Edit', edit_answer_path(answer) %></td>

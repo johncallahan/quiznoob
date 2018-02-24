@@ -3,15 +3,25 @@
 <table class="table table-striped">
   <thead>
     <tr>
+      <th colspan=6><%= paginate @badges %></th>
+    </tr>
+    <tr>
+      <th></th>
       <th>Name</th>
       <th>Subject</th>
       <th colspan="3"></th>
     </tr>
   </thead>
+  <tfoot>
+    <tr>
+      <td><%= paginate @badges %></td>
+    </tr>
+  </tfoot>
 
   <tbody>
-    <% @badges.each do |badge| %>
+    <% @badges.each_with_index do |badge,index| %>
       <tr>
+        <td><%= @basecount+index+1 %></td>
         <td><%= badge.name %></td>
         <td><%= badge.subject.nil? ? "" : badge.subject.name %></td>
         <td><%= link_to 'Show', badge %></td>

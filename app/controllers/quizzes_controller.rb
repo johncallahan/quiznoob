@@ -4,7 +4,9 @@ class QuizzesController < ApplicationController
   # GET /quizzes
   # GET /quizzes.json
   def index
-    @quizzes = Quiz.all.includes(:subject).includes(:questions)
+    @quizzes = Quiz.all.includes(:subject).includes(:questions).order(id: :desc).page(params[:page])
+    @startpage = (params[:page] || "1").to_i
+    @basecount = (@startpage - 1) * Quiz.default_per_page
   end
 
   # GET /quizzes/1

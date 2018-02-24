@@ -4,7 +4,9 @@ class AnswersController < ApplicationController
   # GET /answers
   # GET /answers.json
   def index
-    @answers = Answer.all
+    @answers = Answer.all.page(params[:page])
+    @startpage = (params[:page] || "1").to_i
+    @basecount = (@startpage - 1) * Answer.default_per_page
   end
 
   # GET /answers/1

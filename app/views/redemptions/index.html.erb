@@ -4,6 +4,10 @@
 <table class="table table-striped">
   <thead>
     <tr>
+      <th colspan=8><%= paginate @redemptions %></th>
+    </tr>
+    <tr>
+      <th></th>
       <th>User</th>
       <th>Reward</th>
       <th>Cost</th>
@@ -11,10 +15,16 @@
       <th colspan="3"></th>
     </tr>
   </thead>
+  <tfoot>
+    <tr>
+      <td><%= paginate @redemptions %></td>
+    </tr>
+  </tfoot>
 
   <tbody>
-    <% @redemptions.each do |redemption| %>
+    <% @redemptions.each_with_index do |redemption,index| %>
       <tr>
+        <td><%= @basecount+index+1 %></td>
         <td><%= redemption.user.nil? ? "" : redemption.user.name %></td>
         <td><%= redemption.reward.nil? ? "" : redemption.reward.name %></td>
         <td><%= redemption.cost %></td>

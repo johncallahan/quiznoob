@@ -4,7 +4,9 @@ class AwardsController < ApplicationController
   # GET /awards
   # GET /awards.json
   def index
-    @awards = Award.all
+    @awards = Award.all.order(id: :desc).page(params[:page])
+    @startpage = (params[:page] || "1").to_i
+    @basecount = (@startpage - 1) * Award.default_per_page
   end
 
   # GET /awards/1

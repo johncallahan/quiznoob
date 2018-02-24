@@ -4,7 +4,9 @@ class RewardsController < ApplicationController
   # GET /rewards
   # GET /rewards.json
   def index
-    @rewards = Reward.all
+    @rewards = Reward.all.order(id: :desc).page(params[:page])
+    @startpage = (params[:page] || "1").to_i
+    @basecount = (@startpage - 1) * Reward.default_per_page
   end
 
   # GET /rewards/1

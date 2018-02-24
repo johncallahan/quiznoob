@@ -9,7 +9,9 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     Time.zone = "EST"
-    @users = User.all
+    @users = User.all.order(id: :desc).page(params[:page])
+    @startpage = (params[:page] || "1").to_i
+    @basecount = (@startpage - 1) * User.default_per_page
   end
 
   # GET /users/1

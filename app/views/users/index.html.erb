@@ -4,6 +4,10 @@
 <table class="table table-striped">
     <thead>
       <tr>
+        <th colspan=7><%= paginate @users %></th>
+      </tr>
+      <tr>
+        <th></th>
         <th>Name</th>
         <th>Email</th>
         <th>Hearts</th>
@@ -13,8 +17,9 @@
       </tr>
     </thead>
     <tbody>
-      <% @users.each do |user| %>
+      <% @users.each_with_index do |user,index| %>
         <tr>
+          <td><%= @basecount+index+1 %></td>
           <td><%= link_to user.name, user %></td>
           <td><%= user.email %></td>
           <td><%= user.hearts %></td>

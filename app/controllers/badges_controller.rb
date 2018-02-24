@@ -4,7 +4,9 @@ class BadgesController < ApplicationController
   # GET /badges
   # GET /badges.json
   def index
-    @badges = Badge.all
+    @badges = Badge.all.order(id: :desc).page(params[:page])
+    @startpage = (params[:page] || "1").to_i
+    @basecount = (@startpage - 1) * Badge.default_per_page
   end
 
   # GET /badges/1

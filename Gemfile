@@ -5,6 +5,7 @@ gem "jekyll-readme-index", group: :jekyll_plugins
 gem 'jemoji', group: :jekyll_plugins
 
 gem 'ancestry'
+gem 'kaminari'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 4.2.7.1'

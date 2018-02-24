@@ -4,7 +4,9 @@ class RedemptionsController < ApplicationController
   # GET /redemptions
   # GET /redemptions.json
   def index
-    @redemptions = Redemption.all.order(created_at: :desc)
+    @redemptions = Redemption.all.order(created_at: :desc).page(params[:page])
+    @startpage = (params[:page] || "1").to_i
+    @basecount = (@startpage - 1) * Redemption.default_per_page
   end
 
   # GET /redemptions/1
