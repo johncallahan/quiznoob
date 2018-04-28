@@ -16,7 +16,7 @@ module Api
     def show
       if @user
         @redemptions = Redemption.where("redemptions.user_id = " + @user.id.to_s + " AND redemptions.created_at > '" + DateTime.now.in_time_zone("EST").beginning_of_day.in_time_zone(Time.zone).strftime("%Y-%m-%d %H:%M:%S") + "'").order(created_at: :desc).map{|x| {:id => x.id, :cost => x.cost, :name => x.reward.name, :created_at => distance_of_time_in_words(DateTime.now,x.created_at)+" ago"}}
-        render :json => @user.as_json(:only => [:id,:name,:hearts]).merge({redemptions: @redemptions})
+        render :json => @user.as_json(:only => [:id,:name,:hearts]).merge({redemptions: @redemptions, quizzes: @user.quizzes.where(:enabled => true)})
       else 
         render text: "Token failed verification", status: 422
       end

@@ -11,12 +11,12 @@ class QuizzesController < ApplicationController
       @equizzes = []
       if params[:subject]
         if Subject.find_by_name(params[:subject])
-          @quizzes = Subject.find_by_name(params[:subject]).quizzes.where(:enabled => true)
+          @quizzes = @user.quizzes.where(:subject => Subject.find_by_name(params[:subject]),:enabled => true)
 	else
 	  @quizzes = []
 	end
       else
-        @quizzes = Quiz.all
+        @quizzes = @user.quizzes
       end
       @quizzes.each do |q|
         @equizzes << q.as_json.merge({unattempted: q.unattempted(@user).shuffle, numquestions: q.questions.count})

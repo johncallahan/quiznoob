@@ -24,6 +24,7 @@
       <th>Enabled</th>
       <th>Name</th>
       <th>Sample</th>
+      <th>Users</th>
       <th>Subject</th>
       <th>Bonus</th>
       <th colspan="3"></th>
@@ -42,6 +43,7 @@
         <td><%= check_box_tag 'enabled', quiz.id, quiz.enabled, data: { remote: true, url: url_for(action: :toggle, id: quiz.id), method: "POST" } %></td>
         <td><%= quiz.name %></td>
         <td><%= quiz.sample %></td>
+        <td><%= quiz.users.map { |q| q.name }.join ',' %></td>
         <td><%= select_tag 'subject', options_from_collection_for_select(Subject.all, 'id', 'name', quiz.subject.nil? ? "-" : quiz.subject.id), { :prompt => 'Select subject', data: { remote: true, url: url_for(action: :update_subject, id: quiz.id), method: "POST" }} %></td>
         <td><%= quiz.points %></td>
         <td><%= link_to 'Show', quiz %></td>

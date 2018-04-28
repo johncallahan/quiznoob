@@ -1,7 +1,8 @@
 class Quiz < ActiveRecord::Base
   has_many :prerequisites
   has_many :attempts
-  has_many :users, through: :attempts
+  has_many :user_quiz
+  has_many :users, through: :user_quiz
   has_many :quiz_questions
   has_many :questions, through: :quiz_questions
   belongs_to :subject

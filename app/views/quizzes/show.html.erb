@@ -9,6 +9,10 @@
   <%= @quiz.name %>
 </p>
 <p>
+  <strong>Users:</strong>
+  <%= @quiz.users.map { |q| q.name }.join ',' %>
+</p>
+<p>
   <strong>Questions:</strong><br/>
   <% @quiz.questions.each do |question| %>
     <%= link_to question.name, question_path(question) %><br/>

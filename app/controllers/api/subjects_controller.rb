@@ -11,7 +11,7 @@ class SubjectsController < ApplicationController
       @esubjects = [];
       @subjects = Subject.all
       @subjects.each do |s|
-        @esubjects << s.as_json.merge({numquizzes: s.quizzes.where(:enabled => true).count})
+        @esubjects << s.as_json.merge({numquizzes: @user.quizzes.where(:subject => s,:enabled => true).count})
       end
       render :json => {subjects:@esubjects,hearts:@user.hearts}.to_json
     else 

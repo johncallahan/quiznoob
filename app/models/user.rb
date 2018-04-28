@@ -11,7 +11,8 @@ class User < ActiveRecord::Base
   has_secure_password
   validates :password, length: { minimum: 6 }, allow_nil: true
   has_many :attempts
-  has_many :quizzes, through: :attempts
+  has_many :user_quiz
+  has_many :quizzes, through: :user_quiz
   has_many :redemptions
 
   # Returns the hash digest of the given string.
