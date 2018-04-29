@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  user_id: 
-  quiz_id: 
+two_math:
+  user: two
+  quiz: multiplication
 
-two:
-  user_id: 
-  quiz_id: 
+two_world:
+  user: two
+  quiz: worldmap

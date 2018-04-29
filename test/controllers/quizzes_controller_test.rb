@@ -13,6 +13,15 @@ class QuizzesControllerTest < ActionController::TestCase
     assert_not_nil assigns(:quizzes)
   end
 
+  test "should have 2 quizzes" do
+    get :index
+    assert_response :success
+    assert_not_nil assigns(:quizzes)
+    assert_equal 2, assigns(:quizzes).count
+    assert_includes assigns(:quizzes).map { |q| q.name }, "Multiplication"
+    assert_includes assigns(:quizzes).map { |q| q.name }, "World Map"
+  end
+
   test "should get new" do
     get :new
     assert_response :success
@@ -48,6 +57,7 @@ class QuizzesControllerTest < ActionController::TestCase
 
   test "should destroy quiz" do
     @quiz.attempts.destroy_all
+    @quiz.user_quiz.destroy_all
     assert_difference('Quiz.count', -1) do
       delete :destroy, id: @quiz
     end

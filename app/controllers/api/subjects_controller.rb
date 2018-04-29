@@ -14,7 +14,7 @@ class SubjectsController < ApplicationController
         @esubjects << s.as_json.merge({numquizzes: @user.quizzes.where(:subject => s,:enabled => true).count})
       end
       render :json => {subjects:@esubjects,hearts:@user.hearts}.to_json
-    else 
+    else
       render text: "Token failed verification", status: 422
     end
   end

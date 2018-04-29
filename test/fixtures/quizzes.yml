@@ -4,3 +4,10 @@ multiplication:
   name: Multiplication
   subject: mathematics
   points: 10
+  enabled: true
+
+worldmap:
+  name: World Map
+  subject: geography
+  points: 10
+  enabled: true

@@ -48,6 +48,7 @@ class SubjectsControllerTest < ActionController::TestCase
 
   test "should destroy subject" do
     @subject.quizzes.each{|q| q.attempts.destroy_all }
+    @subject.quizzes.each{|q| q.user_quiz.destroy_all }
     @subject.quizzes.destroy_all
     assert_difference('Subject.count', -1) do
       delete :destroy, id: @subject

@@ -3,5 +3,13 @@
 one:
   name: one
   email: one@example.com
+  access_token: 1234567890
+  admin: false
+  hearts: 0
+
+two:
+  name: two
+  email: two@example.com
+  access_token: ABCDEFGHIJ
   admin: false
   hearts: 0
