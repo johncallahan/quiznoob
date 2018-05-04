@@ -1,12 +1,9 @@
 Rails.application.routes.draw do
 
-  resources :badges
   devise_for :admins
-
-#  root 'welcome#welcome'
-
   authenticate :admin do
     root 'users#index'
+    resources :badges
     resources :redemptions
     resources :awards
     resources :rewards
@@ -28,6 +25,11 @@ Rails.application.routes.draw do
       collection do
         post :import
 	      post :export
+      end
+    end
+    resources :user_quizzes do
+      collection do
+        post :toggle
       end
     end
     get    'signup'  => 'users#new'
