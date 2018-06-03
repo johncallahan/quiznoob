@@ -24,6 +24,10 @@
     <%= f.number_field :points %>
   </div>
   <div class="field">
+    <%= f.label :minimum %><br>
+    <%= f.number_field :minimum %> / <%= @quiz.sample %>
+  </div>
+  <div class="field">
     <%= f.label :description %><br>
     <%= f.text_field :description %>
   </div>

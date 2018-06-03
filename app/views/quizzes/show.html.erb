@@ -13,7 +13,7 @@
   <%= @quiz.users.map { |q| q.name }.join ',' %>
 </p>
 <p>
-  <strong>Questions:</strong><br/>
+  <strong>Questions:</strong> (<%= @quiz.questions.count %>)<br/>
   <% @quiz.questions.each do |question| %>
     <%= link_to question.name, question_path(question) %><br/>
   <% end %>

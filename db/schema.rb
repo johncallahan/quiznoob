@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180428143400) do
+ActiveRecord::Schema.define(version: 20180505144424) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
@@ -128,6 +128,7 @@ ActiveRecord::Schema.define(version: 20180428143400) do
     t.boolean  "enabled"
     t.integer  "sample",      limit: 4,   default: 10, null: false
     t.string   "ancestry",    limit: 255
+    t.integer  "minimum",     limit: 4
   end
 
   add_index "quizzes", ["ancestry"], name: "index_quizzes_on_ancestry", using: :btree
