@@ -76,4 +76,44 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  #
+  # Use lograge formatting
+  #
+  config.lograge.enabled = true
+  config.lograge.formatter = Lograge::Formatters::Logstash.new
+
+  #
+  # logstash-logger w/UDP
+  #
+  # Optional, Rails sets the default to :info
+  config.log_level = :info
+  # Optional, Rails 4 defaults to true in development and false in production
+  #config.autoflush_log = true
+  # Optional, use a URI to configure. Useful on Heroku
+  #config.logstash.uri = ENV['LOGSTASH_URI']
+  # Optional. Defaults to :json_lines. If there are multiple outputs,
+  # they will all share the same formatter.
+  #config.logstash.formatter = :json_lines
+  # Optional, max number of items to buffer before flushing. Defaults to 50
+  #config.logstash.buffer_max_items = 50
+  # Optional, max number of seconds to wait between flushes. Defaults to 5
+  #config.logstash.buffer_max_interval = 5
+
+  # Optional, defaults to '0.0.0.0'
+  config.logstash.host = ENV['LOGSTASH_HOST']
+  # Optional, defaults to :udp.
+  config.logstash.type = :udp
+  # Required, the port to connect to (should be 5228)
+  config.logstash.port = ENV['LOGSTASH_PORT']
+
+  LogStashLogger.configure do |config|
+    config.customize_event do |event|
+      event["app"] = ENV['APP_NAME']
+      event["remote_ip"] = RequestStore.store[:remote_ip]
+      event["user_agent"] = RequestStore.store[:user_agent]
+      event["user_id"] = RequestStore.store[:user_id]
+    end
+  end
+
 end
