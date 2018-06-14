@@ -13,36 +13,39 @@
 
 ActiveRecord::Schema.define(version: 20180505144424) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "admins", force: :cascade do |t|
-    t.string   "email",                  limit: 255, default: "", null: false
-    t.string   "encrypted_password",     limit: 255, default: "", null: false
-    t.string   "reset_password_token",   limit: 255
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          limit: 4,   default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip",     limit: 255
-    t.string   "last_sign_in_ip",        limit: 255
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "answers", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "attempts", force: :cascade do |t|
-    t.integer  "user_id",     limit: 4
-    t.integer  "quiz_id",     limit: 4
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.integer  "user_id"
+    t.integer  "quiz_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.datetime "startedat"
-    t.integer  "question_id", limit: 4
+    t.integer  "question_id"
     t.boolean  "result"
-    t.integer  "answer_id",   limit: 4
+    t.integer  "answer_id"
   end
 
   add_index "attempts", ["answer_id"], name: "index_attempts_on_answer_id", using: :btree
@@ -51,149 +54,149 @@ ActiveRecord::Schema.define(version: 20180505144424) do
   add_index "attempts", ["user_id"], name: "index_attempts_on_user_id", using: :btree
 
   create_table "awards", force: :cascade do |t|
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-    t.integer  "source_id",   limit: 4
-    t.string   "source_type", limit: 255
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "source_id"
+    t.string   "source_type"
   end
 
   add_index "awards", ["source_type", "source_id"], name: "index_awards_on_source_type_and_source_id", using: :btree
 
   create_table "badges", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.integer  "subject_id", limit: 4
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.string   "ancestry",   limit: 255
+    t.string   "name"
+    t.integer  "subject_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "ancestry"
   end
 
   add_index "badges", ["ancestry"], name: "index_badges_on_ancestry", using: :btree
 
   create_table "bonuses", force: :cascade do |t|
-    t.integer  "user_id",    limit: 4
-    t.integer  "quiz_id",    limit: 4
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.integer  "user_id"
+    t.integer  "quiz_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "bonuses", ["quiz_id"], name: "index_bonuses_on_quiz_id", using: :btree
   add_index "bonuses", ["user_id"], name: "index_bonuses_on_user_id", using: :btree
 
   create_table "prerequisites", force: :cascade do |t|
-    t.integer  "badge_id",   limit: 4
-    t.integer  "quiz_id",    limit: 4
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.integer  "badge_id"
+    t.integer  "quiz_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "question_answers", force: :cascade do |t|
-    t.integer  "question_id", limit: 4
-    t.integer  "answer_id",   limit: 4
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.integer  "question_id"
+    t.integer  "answer_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   add_index "question_answers", ["answer_id"], name: "index_question_answers_on_answer_id", using: :btree
   add_index "question_answers", ["question_id"], name: "index_question_answers_on_question_id", using: :btree
 
   create_table "questions", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
-    t.integer  "answer_id",  limit: 4
-    t.integer  "points",     limit: 4,   default: 0
-    t.string   "imageurl",   limit: 255
+    t.string   "name"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "answer_id"
+    t.integer  "points",     default: 0
+    t.string   "imageurl"
   end
 
   add_index "questions", ["answer_id"], name: "index_questions_on_answer_id", using: :btree
 
   create_table "quiz_questions", force: :cascade do |t|
-    t.integer  "quiz_id",     limit: 4
-    t.integer  "question_id", limit: 4
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.integer  "quiz_id"
+    t.integer  "question_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   add_index "quiz_questions", ["question_id"], name: "index_quiz_questions_on_question_id", using: :btree
   add_index "quiz_questions", ["quiz_id"], name: "index_quiz_questions_on_quiz_id", using: :btree
 
   create_table "quizzes", force: :cascade do |t|
-    t.string   "name",        limit: 255
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
-    t.string   "description", limit: 255
-    t.string   "iconname",    limit: 255
-    t.integer  "subject_id",  limit: 4
-    t.integer  "points",      limit: 4,   default: 0
+    t.string   "name"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "description"
+    t.string   "iconname"
+    t.integer  "subject_id"
+    t.integer  "points",      default: 0
     t.boolean  "enabled"
-    t.integer  "sample",      limit: 4,   default: 10, null: false
-    t.string   "ancestry",    limit: 255
-    t.integer  "minimum",     limit: 4
+    t.integer  "sample",      default: 10, null: false
+    t.string   "ancestry"
+    t.integer  "minimum"
   end
 
   add_index "quizzes", ["ancestry"], name: "index_quizzes_on_ancestry", using: :btree
   add_index "quizzes", ["subject_id"], name: "index_quizzes_on_subject_id", using: :btree
 
   create_table "redemptions", force: :cascade do |t|
-    t.integer  "user_id",    limit: 4
-    t.integer  "reward_id",  limit: 4
-    t.integer  "cost",       limit: 4
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.integer  "user_id"
+    t.integer  "reward_id"
+    t.integer  "cost"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "redemptions", ["reward_id"], name: "index_redemptions_on_reward_id", using: :btree
   add_index "redemptions", ["user_id"], name: "index_redemptions_on_user_id", using: :btree
 
   create_table "requirements", force: :cascade do |t|
-    t.integer  "badge_id",   limit: 4
-    t.integer  "quiz_id",    limit: 4
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.integer  "badge_id"
+    t.integer  "quiz_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "rewards", force: :cascade do |t|
-    t.string   "name",        limit: 255
-    t.string   "description", limit: 255
-    t.integer  "cost",        limit: 4
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
-    t.string   "event",       limit: 255
-    t.boolean  "enabled",                 default: true
+    t.string   "name"
+    t.string   "description"
+    t.integer  "cost"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.string   "event"
+    t.boolean  "enabled",     default: true
   end
 
   create_table "subjects", force: :cascade do |t|
-    t.string   "name",        limit: 255
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-    t.string   "description", limit: 255
+    t.string   "name"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "description"
   end
 
   create_table "user_quizzes", force: :cascade do |t|
-    t.integer  "user_id",    limit: 4
-    t.integer  "quiz_id",    limit: 4
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.integer  "user_id"
+    t.integer  "quiz_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "user_quizzes", ["quiz_id"], name: "index_user_quizzes_on_quiz_id", using: :btree
   add_index "user_quizzes", ["user_id"], name: "index_user_quizzes_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "name",            limit: 255
-    t.string   "email",           limit: 255
-    t.boolean  "admin",                       default: false
-    t.string   "password_digest", limit: 255
-    t.string   "remember_digest", limit: 255
-    t.string   "access_token",    limit: 255
-    t.string   "reset_digest",    limit: 255
+    t.string   "name"
+    t.string   "email"
+    t.boolean  "admin",           default: false
+    t.string   "password_digest"
+    t.string   "remember_digest"
+    t.string   "access_token"
+    t.string   "reset_digest"
     t.datetime "reset_sent_at"
-    t.datetime "created_at",                                  null: false
-    t.datetime "updated_at",                                  null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.datetime "lastlogin"
-    t.integer  "utcoffset",       limit: 4
-    t.integer  "hearts",          limit: 4,   default: 0
-    t.string   "account",         limit: 255
+    t.integer  "utcoffset"
+    t.integer  "hearts",          default: 0
+    t.string   "account"
   end
 
   add_index "users", ["access_token"], name: "index_users_on_access_token", using: :btree

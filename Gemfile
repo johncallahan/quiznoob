@@ -8,10 +8,9 @@ gem 'ancestry'
 gem 'kaminari'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 4.2.7.1'
+gem 'rails', '= 4.2.10'
 # Use mysql as the database for Active Record
-#gem 'mysql2', '>= 0.3.13', '< 0.5'
-gem 'mysql'
+gem 'pg', '0.17.1'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -22,6 +21,8 @@ gem 'coffee-rails', '~> 4.1.0'
 # gem 'therubyracer', platforms: :ruby
 
 gem 'roo'
+
+gem 'pkg-config'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -40,7 +41,8 @@ gem 'rack-cors', :require => 'rack/cors'
 
 gem 'rest-client'
 
-gem 'devise', '~> 3.4.0'
+#gem 'devise', '~> 3.4.0'
+gem 'devise'
 gem 'time_difference'
 
 # Use ActiveModel has_secure_password
@@ -58,7 +60,6 @@ group :development, :test do
 end
 
 group :production do
-  gem 'pg',             '0.17.1'
 #  gem 'rails_12factor', '0.0.2'
   gem 'rails_serve_static_assets'
   gem 'logstash-logger'
