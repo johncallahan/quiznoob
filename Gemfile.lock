@@ -304,7 +304,7 @@ GEM
     minitest (5.11.3)
     multi_json (1.13.1)
     multipart-post (2.0.0)
-    mysql2 (0.5.1)
+    mysql (2.9.1)
     netrc (0.11.0)
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
@@ -441,7 +441,7 @@ DEPENDENCIES
   lograge
   logstash-event
   logstash-logger
-  mysql2
+  mysql
   pg (= 0.17.1)
   pkg-config
   rack-cors
