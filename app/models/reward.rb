@@ -2,6 +2,8 @@ class Reward < ActiveRecord::Base
   has_many :redemptions
   before_destroy :no_referenced_redemptions
 
+  enum flavor: [:ifttt, :cash]
+
   private
 
   def no_referenced_redemptions

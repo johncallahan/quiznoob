@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :null_session
   include SessionsHelper
-  before_filter :track_request_params
+#  before_filter :track_request_params
 
   def track_request_params
     RequestStore.store[:remote_ip] = request.remote_ip

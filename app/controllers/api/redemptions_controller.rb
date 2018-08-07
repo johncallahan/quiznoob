@@ -13,19 +13,34 @@ class RedemptionsController < ApplicationController
       @redemption.user = @user
       @redemption.cost = @reward.cost
       @redemption.reward = @reward
-      key = ENV["IFTTT_KEY"]
-      url = "https://maker.ifttt.com/trigger/#{@user.account}#{@reward.event}/with/key/#{key}"
-      response = RestClient.get url
 
-      respond_to do |format|
-        if response.code == 200 && @redemption.save
-          @user.hearts = @user.hearts - @reward.cost
-          @user.save!
+      if @reward.flavor == :ifttt
+        key = ENV["IFTTT_KEY"]
+	url = "https://maker.ifttt.com/trigger/#{@user.account}#{@reward.event}/with/key/#{key}"
+	response = RestClient.get url
 
-          format.json { render json: @redemption.as_json(include: {reward: {only: :name}}).merge({hearts: @user.hearts}), status: :created }
-        else
-          format.json { render json: nil, status: :not_acceptable }
+	respond_to do |format|
+	  if response.code == 200 && @redemption.save
+            @user.hearts = @user.hearts - @reward.cost
+            @user.save!
+
+            format.json { render json: @redemption.as_json(include: {reward: {only: :name}}).merge({hearts: @user.hearts}), status: :created }
+          else
+            format.json { render json: nil, status: :not_acceptable }
+          end
         end
+      else
+      	respond_to do |format|
+          if @redemption.save
+            @user.hearts = @user.hearts - @reward.cost
+	    @user.save!
+	    SmsMailer.sms_email(Admin.all.first).deliver
+
+	    format.json { render json: @redemption.as_json(include: {reward: {only: :name}}).merge({hearts: @user.hearts}), status: :created }
+	  else
+	    format.json { render json: nil, status: :not_acceptable }
+	  end
+	end
       end
     else
       respond_to do |format|

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180505144424) do
+ActiveRecord::Schema.define(version: 20180807024506) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20180505144424) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "smsmail"
   end
 
   create_table "answers", force: :cascade do |t|
@@ -163,6 +164,7 @@ ActiveRecord::Schema.define(version: 20180505144424) do
     t.datetime "updated_at",                 null: false
     t.string   "event"
     t.boolean  "enabled",     default: true
+    t.integer  "flavor"
   end
 
   create_table "subjects", force: :cascade do |t|
