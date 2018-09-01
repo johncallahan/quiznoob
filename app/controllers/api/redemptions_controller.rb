@@ -14,7 +14,7 @@ class RedemptionsController < ApplicationController
       @redemption.cost = @reward.cost
       @redemption.reward = @reward
 
-      if @reward.flavor == :ifttt
+      if @reward.ifttt?
         key = ENV["IFTTT_KEY"]
 	url = "https://maker.ifttt.com/trigger/#{@user.account}#{@reward.event}/with/key/#{key}"
 	response = RestClient.get url
@@ -29,7 +29,7 @@ class RedemptionsController < ApplicationController
             format.json { render json: nil, status: :not_acceptable }
           end
         end
-      else
+      elsif @reward.cash?
       	respond_to do |format|
           if @redemption.save
             @user.hearts = @user.hearts - @reward.cost
